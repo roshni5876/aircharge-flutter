@@ -17,6 +17,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +62,7 @@ class DashbordBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10),
+      // padding: const EdgeInsets.only(top: 10),
       color: AppColors.bgGreyColor,
       height: 80,
       child: GetBuilder<DashboradScareenController>(

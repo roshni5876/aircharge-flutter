@@ -46,7 +46,7 @@ class ContentWidget extends GetView<HomeController> {
     return Column(
       children: [
         Text(
-          'Browse Partner Offers',
+          'Browse Nearby Offers',
           style: Styles.metaBold(
             color: AppColors.black,
             size: 18.sp,
@@ -61,9 +61,12 @@ class ContentWidget extends GetView<HomeController> {
           ),
           maxLines: 2,
         ),
+        SizedBox(
+          height: 16.h,
+        ),
         Expanded(
           child: Container(
-            color: AppColors.grey.withOpacity(0.1),
+            color: AppColors.bgGreyColor,
             padding: const EdgeInsets.symmetric(
               horizontal: 4.0,
               vertical: 2.0,
@@ -129,7 +132,10 @@ class ContentWidget extends GetView<HomeController> {
                                   width: Get.width,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    bottom: 14,
+                                  ),
                                   child: Text(
                                     "${offers[index]['title']}",
                                     style: Styles.metaBold(
@@ -139,7 +145,8 @@ class ContentWidget extends GetView<HomeController> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, bottom: 14),
                                   child: Text(
                                     "${offers[index]['subtitle']}",
                                     style: Styles.metaRegular(
@@ -148,16 +155,16 @@ class ContentWidget extends GetView<HomeController> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "${offers[index]['text']}",
-                                    style: Styles.metaRegular(
-                                      color: AppColors.black,
-                                      size: 14.sp,
-                                    ),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(left: 10),
+                                //   child: Text(
+                                //     "${offers[index]['text']}",
+                                //     style: Styles.metaRegular(
+                                //       color: AppColors.black,
+                                //       size: 14.sp,
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
