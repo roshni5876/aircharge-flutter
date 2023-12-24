@@ -18,7 +18,9 @@ class OfferDetails extends GetView<HomeController> {
       borderRadius: BorderRadius.circular(22),
       child: Card(
         elevation: 12,
-        margin: EdgeInsets.only(bottom: Get.height * 0.108, left: 8, right: 8),
+        color: AppColors.white,
+        margin: EdgeInsets.only(
+            bottom: Get.height * 0.108, left: 8, right: 8, top: 2),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
@@ -51,15 +53,14 @@ class OfferDetails extends GetView<HomeController> {
                         width: 12.sp,
                       ),
                       const CircleAvatar(
-                        maxRadius: 24,
+                        maxRadius: 20,
                         backgroundImage: AssetImage(
                           "assets/images/starbuckslogo.png",
                         ),
                       ),
                       SizedBox(
-                        width: 36.sp,
+                        width: 60.w,
                       ),
-                      // Spacer(),
                       Text(
                         "Starbucks",
                         style: Styles.metaBold(
@@ -68,6 +69,9 @@ class OfferDetails extends GetView<HomeController> {
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 10.h,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -94,13 +98,16 @@ class OfferDetails extends GetView<HomeController> {
                       size: 16.sp,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     "Offer ends: dd/mm/yyyy",
                     style: Styles.metaRegular(
                       color: AppColors.black,
                       size: 16.sp,
                     ),
+                  ),
+                  SizedBox(
+                    height: 6.h,
                   ),
                   PrimaryButton(
                     onPressed: () {},

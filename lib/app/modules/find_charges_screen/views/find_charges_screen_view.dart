@@ -2,8 +2,10 @@ import 'package:aircharge/app/core/constants/enums.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/data/models/list_map.dart';
+import 'package:aircharge/app/modules/find_charges_screen/views/comman_listtile.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_details_screen_view.dart';
 import 'package:aircharge/app/routes/app_pages.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +39,7 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                       Icons.search,
                       color: AppColors.darkGrey,
                     ),
-                    hintText: 'Search Public Charging Locatins',
+                    hintText: 'Search Public Charging Locations',
                     helperStyle: const TextStyle(color: AppColors.grey),
                     fillColor: AppColors.white,
                     filled: true,
@@ -59,7 +61,6 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
               children: [
                 Card(
                   child: Container(
-                    // padding: const EdgeInsets.all(8),
                     height: 50,
                     width: Get.width / 2.24,
                     decoration: BoxDecoration(
@@ -73,7 +74,7 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                         ]),
                     child: Row(children: [
                       const Icon(
-                        Icons.emergency_share_rounded,
+                        EvaIcons.navigation2,
                         color: AppColors.green,
                       ),
                       Flexible(
@@ -118,8 +119,8 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                               child: Text(
                                 // "",
                                 controller.isMapViewVisible
-                                    ? ' Map View'
-                                    : " List View",
+                                    ? ' List View'
+                                    : " Map View",
                                 style: Styles.metaRegular(
                                   color: AppColors.icongrey,
                                   size: 18.sp,
@@ -135,7 +136,7 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
           ),
           Expanded(
             child: Container(
-              color: AppColors.grey.withOpacity(0.1),
+              color: AppColors.bgGreyColor,
               child: ListView.builder(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,
@@ -147,39 +148,11 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                       child: InkWell(
                         onTap: () {
                           Scaffold.of(context).openEndDrawer();
-                          
                         },
-                        child: ListTile(
-                          tileColor: AppColors.white,
-                          leading: CircleAvatar(
-                            maxRadius: 30,
-                            backgroundImage:
-                                AssetImage("${charges[index]['image']}"),
-                          ),
-                          title: Text(
-                            charges[index]['title'] ?? "",
-                            style: Styles.metaBold(
-                              color: AppColors.black,
-                              size: 18.sp,
-                            ),
-                          ),
-                          subtitle: Text(
-                            // "${   charges[index]['subtitle'] \n  charges[index]['thirdtitle'] ,}",
-                            "Southampton row\n2.5 miles",
-                            style: Styles.metaRegular(
-                              color: AppColors.icongrey,
-                              size: 16.sp,
-                            ),
-                          ),
-                          isThreeLine: true,
-                          trailing: const Padding(
-                            padding: EdgeInsets.only(top: 20),
-                            child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 22,
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
+                        child: CommanListTile(
+                          img: "${charges[index]['image']}",
+                          title: charges[index]['title'] ?? "",
+                          subTitle: "Southampton row\n2.5 miles",
                         ),
                       ),
                     );

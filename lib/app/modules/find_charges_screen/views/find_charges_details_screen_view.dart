@@ -17,8 +17,10 @@ class FindChargesDetailsScreen extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(22),
       child: Card(
+        color: AppColors.white,
         elevation: 12,
-        margin: EdgeInsets.only(bottom: Get.height * 0.108, left: 8, right: 8),
+        margin: EdgeInsets.only(
+            bottom: Get.height * 0.108, left: 8, right: 8, top: 2),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
@@ -48,7 +50,7 @@ class FindChargesDetailsScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(top: 2, left: 10, right: 6),
                         child: CircleAvatar(
-                          maxRadius: 24,
+                          maxRadius: 20,
                           backgroundImage: AssetImage(
                             "assets/images/starbuckslogo.png",
                           ),
@@ -75,7 +77,7 @@ class FindChargesDetailsScreen extends StatelessWidget {
                               color: AppColors.red,
                             ),
                             Text(
-                              'repot',
+                              'report',
                               style: Styles.metaRegular(
                                 color: AppColors.red,
                                 size: 14.sp,
@@ -85,6 +87,9 @@ class FindChargesDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -116,11 +121,14 @@ class FindChargesDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   Text(
                     "150 Russell sq, Southamton Row London,WC1B 5AL, 2.4 miles",
                     style: Styles.metaRegular(
                       color: AppColors.icongrey,
-                      size: 14.sp,
+                      size: 16.sp,
                     ),
                     maxLines: 4,
                   ),
