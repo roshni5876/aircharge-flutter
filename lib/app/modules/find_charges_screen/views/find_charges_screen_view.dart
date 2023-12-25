@@ -60,18 +60,15 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
             child: Row(
               children: [
                 Card(
+                  elevation: 2,
+                  color: AppColors.white,
                   child: Container(
-                    height: 50,
+                    height: 50.h,
                     width: Get.width / 2.24,
                     decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.2),
-                            offset: const Offset(0, 3),
-                          ),
-                        ]),
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     child: Row(children: [
                       const Icon(
                         EvaIcons.navigation2,
@@ -90,37 +87,38 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                   ),
                 ),
                 Card(
+                  elevation: 2,
+                  color: AppColors.white,
                   child: Container(
                     padding: const EdgeInsets.all(8),
-                    height: 50,
+                    height: 50.h,
                     width: Get.width / 2.24,
                     decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.2),
-                            offset: const Offset(0, 3),
-                          ),
-                        ]),
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.white.withOpacity(0.2),
+                      //     offset: const Offset(0, 3),
+                      //   ),
+                      // ],
+                    ),
                     child: Obx(() => InkWell(
                           onTap: () {
                             controller.isMapViewVisible =
                                 !controller.isMapViewVisible;
                           },
                           child: Row(children: [
-                            Icon(
+                            Image.asset(
                               controller.isMapViewVisible
-                                  ? Icons.map
-                                  : Icons.list_outlined,
-                              color: AppColors.darkGrey,
+                                  ? "assets/images/listview.png"
+                                  : "assets/images/mapview.png",
                             ),
                             FittedBox(
                               child: Text(
-                                // "",
                                 controller.isMapViewVisible
-                                    ? ' List View'
-                                    : " Map View",
+                                    ? " List View"
+                                    : ' Map View',
                                 style: Styles.metaRegular(
                                   color: AppColors.icongrey,
                                   size: 18.sp,
