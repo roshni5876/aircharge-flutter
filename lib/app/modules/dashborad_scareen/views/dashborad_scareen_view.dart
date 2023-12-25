@@ -17,6 +17,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,26 +56,26 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
   }
 }
 
-class DashbordBottomNavigationBar extends StatelessWidget {
+class DashbordBottomNavigationBar extends GetView<DashboradScareenController> {
   const DashbordBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 10),
-      color: AppColors.bgGreyColor,
-      height: 80,
-      child: GetBuilder<DashboradScareenController>(
-        id: "screen",
-        builder: (cont) => BottomNavigationBar(
+    return GetBuilder<DashboradScareenController>(
+      id: "screen",
+      builder: (cont) => Container(
+        height: 80.h,
+        child: BottomNavigationBar(
           selectedItemColor: AppColors.black,
           onTap: cont.navigateToScreen,
           currentIndex: cont.currentIndex,
           backgroundColor: AppColors.white,
           unselectedItemColor: AppColors.grey,
+          selectedIconTheme: IconThemeData(),
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.discount_outlined),
+              icon: Icon(Icons.discount),
               label: 'Offers',
             ),
             BottomNavigationBarItem(
