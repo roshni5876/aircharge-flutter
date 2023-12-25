@@ -50,7 +50,7 @@ class OfferDetails extends GetView<HomeController> {
                         ),
                       ),
                       SizedBox(
-                        width: 12.sp,
+                        width: 16.sp,
                       ),
                       const CircleAvatar(
                         maxRadius: 20,
@@ -82,6 +82,9 @@ class OfferDetails extends GetView<HomeController> {
                             fit: BoxFit.fill)),
                     height: Get.height / 3.2,
                     width: Get.width,
+                  ),
+                  SizedBox(
+                    height: 8.h,
                   ),
                   Text(
                     "Earn rewards in the starbucks loyalty app",
