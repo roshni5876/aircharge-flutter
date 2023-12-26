@@ -39,7 +39,8 @@ class DashboradScareenController extends GetxController
   Widget _buildScreen(int index) {
     switch (index) {
       case 0:
-        return const HomeView();
+        return HomeView();
+
       case 1:
         return const FindChargesScreenView();
       case 2:

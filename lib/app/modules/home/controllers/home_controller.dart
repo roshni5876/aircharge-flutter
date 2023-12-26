@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
-  //TODO: Implement HomeController
 
   @override
   void onInit() {
@@ -13,7 +12,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     update(["dot"]);
     update(["page"]);
     offers;
-    update(["visible"]);
+    update(["visiblePage"]);
   }
 
   /// CarouselSlider
@@ -37,7 +36,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
         return Container(
           width: 12.0,
           height: 12.0,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
+          margin: const EdgeInsets.symmetric(horizontal: 5.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: currentPage == index ? AppColors.black : AppColors.grey,
@@ -51,5 +50,12 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   void openEndDrawer() {
     scaffoldKey.currentState?.openEndDrawer();
+  }
+
+
+   var isVisible = true.obs;
+
+  void toggleVisibility() {
+    isVisible.value = !isVisible.value;
   }
 }

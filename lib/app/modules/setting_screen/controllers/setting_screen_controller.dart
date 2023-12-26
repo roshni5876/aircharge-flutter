@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class SettingScreenController extends GetxController {
-  //TODO: Implement SettingScreenController
 
   var lowPowerNotification = "Option 2".obs;
 
