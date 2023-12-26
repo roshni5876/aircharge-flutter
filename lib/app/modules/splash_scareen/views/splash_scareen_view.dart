@@ -23,7 +23,7 @@ class SplashScareenView extends GetView<SplashScareenController> {
           future: Future.delayed(const Duration(milliseconds: 750)),
           builder: (context, Snapshot) {
             if (Snapshot.connectionState == ConnectionState.done) {
-              return TextColorChangeDemo();
+              return const TextColorChangeDemo();
             }
             return Container();
           }),
@@ -73,7 +73,6 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
       textColor = Color.lerp(Colors.white, Colors.black, fraction)!;
 
       // Update the UI
-      update() {}
 
       // Check if animation is complete
       if (step++ >= steps) {

@@ -16,6 +16,5 @@ class DashboradScareenBinding extends Bindings {
     );
     Get.put(SplashScareenController());
     Get.put(FindChargesScreenController());
-    
   }
 }

@@ -1,8 +1,8 @@
-import 'package:aircharge/app/core/constants/enums.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -18,11 +18,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        padding: EdgeInsets.only(top: 10.sp, bottom: 72.sp),
         children: [
-          const SizedBox(
-            height: 20,
-          ),
           Center(
             child: Text(
               "Settings",
@@ -39,7 +36,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
             color: AppColors.grey.withOpacity(0.1),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Notification Settings",
               style: Styles.metaBold(
@@ -132,7 +129,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
           ),
           Row(
             children: [
-              Obx(() => Container(
+              Obx(() => SizedBox(
                     width: Get.width / 1.2,
                     child: Slider(
                       value: settingScreenController
@@ -180,7 +177,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
           ),
           Row(
             children: [
-              Obx(() => Container(
+              Obx(() => SizedBox(
                     width: Get.width / 1.2,
                     child: Slider(
                       value: settingScreenController
@@ -205,7 +202,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "Data Tracking",
               style: Styles.metaBold(

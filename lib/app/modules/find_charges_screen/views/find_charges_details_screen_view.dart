@@ -1,15 +1,16 @@
 import 'package:aircharge/app/core/theme/buttons.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
+import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
 import 'package:aircharge/app/routes/app_pages.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
-class FindChargesDetailsScreen extends StatelessWidget {
+class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
   const FindChargesDetailsScreen({super.key});
 
   @override
@@ -17,8 +18,8 @@ class FindChargesDetailsScreen extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(22),
       child: Card(
+        elevation: 10.0,
         color: AppColors.white,
-        elevation: 12,
         margin: EdgeInsets.only(
             bottom: Get.height * 0.108, left: 8, right: 8, top: 2),
         child: Container(
@@ -39,6 +40,7 @@ class FindChargesDetailsScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
+                          // Get.toNamed(Routes.FIND_CHARGES_SCREEN);
                           Get.back();
                         },
                         child: Icon(
@@ -65,25 +67,34 @@ class FindChargesDetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          // Get.toNamed(Routes.REPORT_ISSUE_SCREEN);
-                        },
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.report_gmailerrorred,
-                              size: 20.sp,
-                              color: AppColors.red,
-                            ),
-                            Text(
-                              'report',
-                              style: Styles.metaRegular(
+                      GetBuilder<FindChargesScreenController>(
+                        id: "report",
+                        builder: (cont) => InkWell(
+                          onTap: () {
+                            // print(controller.showEndDrawer1 );
+                            Scaffold.of(context).openEndDrawer();
+
+                            // controller.showEndDrawer1 = false;
+                            // print(controller.showEndDrawer1 );
+                            // controller.showEndDrawer1 = true;
+                            // Get.toNamed(Routes.REPORT_ISSUE_SCREEN);
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.report_gmailerrorred,
+                                size: 20.sp,
                                 color: AppColors.red,
-                                size: 14.sp,
                               ),
-                            )
-                          ],
+                              Text(
+                                'report',
+                                style: Styles.metaRegular(
+                                  color: AppColors.red,
+                                  size: 14.sp,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -155,9 +166,7 @@ class FindChargesDetailsScreen extends StatelessWidget {
                         Icons.star,
                         color: Colors.amber,
                       ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
+                      onRatingUpdate: (rating) {},
                     ),
                   ),
                   const Spacer(),

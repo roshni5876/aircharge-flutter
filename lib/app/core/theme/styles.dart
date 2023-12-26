@@ -91,6 +91,7 @@ class Styles {
       height: 1.25,
       decoration: textDecoration,
       fontSize: size,
+      
     );
   }
 }

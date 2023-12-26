@@ -1,10 +1,7 @@
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
-import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
