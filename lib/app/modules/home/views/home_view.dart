@@ -23,17 +23,20 @@ class HomeView extends GetView<HomeController> {
     );
 
     return Scaffold(
+      endDrawerEnableOpenDragGesture: false,
+      drawerEnableOpenDragGesture: false,
       drawerEdgeDragWidth: 0,
-      key: controller.scaffoldKey,
+      key: controller.scaffoldKeyDrawerKey,
       backgroundColor: AppColors.white,
       drawerScrimColor: Colors.transparent,
       body: GestureDetector(
           onTap: () {
-            if (controller.scaffoldKey.currentState?.isEndDrawerOpen ?? false) {
+            if (controller.scaffoldKeyDrawerKey.currentState?.isEndDrawerOpen ??
+                false) {
               Navigator.of(context).pop();
             }
           },
-          child: ContentWidget()),
+          child: const ContentWidget()),
       endDrawer: OfferDetails(),
     );
   }
@@ -67,10 +70,11 @@ class ContentWidget extends GetView<HomeController> {
         ),
         Expanded(
           child: Container(
-            height: Get.height,
             color: AppColors.bgGreyColor,
-            padding: EdgeInsets.symmetric(horizontal: 4.0.sp, vertical: 2.0.sp),
+            padding:
+                EdgeInsets.symmetric(horizontal: 12.0.sp, vertical: 2.0.sp),
             child: ListView(
+                physics: SlowScrollPhysics(),
                 padding: EdgeInsets.only(top: 0, bottom: 72.sp),
                 children: [
                   CarouselSlider.builder(
@@ -109,7 +113,6 @@ class ContentWidget extends GetView<HomeController> {
                             id: "visiblePage",
                             builder: (cont) => InkWell(
                               onTap: () {
-                                // controller.toggleVisibility();
                                 Scaffold.of(context).openEndDrawer();
                               },
                               child: Container(
@@ -129,14 +132,12 @@ class ContentWidget extends GetView<HomeController> {
                                               image: AssetImage(
                                                   "${offers[index]['image']}"),
                                               fit: BoxFit.fill)),
-                                      height: Get.height / 4,
+                                      height: Get.height / 4.hashCode,
                                       width: Get.width,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 10,
-                                        bottom: 14,
-                                      ),
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 14.h),
                                       child: Text(
                                         "${offers[index]['title']}",
                                         style: Styles.metaBold(
@@ -146,8 +147,8 @@ class ContentWidget extends GetView<HomeController> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, bottom: 14),
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 14.h),
                                       child: Text(
                                         "${offers[index]['subtitle']}",
                                         style: Styles.metaRegular(
@@ -156,16 +157,6 @@ class ContentWidget extends GetView<HomeController> {
                                         ),
                                       ),
                                     ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.only(left: 10),
-                                    //   child: Text(
-                                    //     "${offers[index]['text']}",
-                                    //     style: Styles.metaRegular(
-                                    //       color: AppColors.black,
-                                    //       size: 14.sp,
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ),
@@ -176,10 +167,22 @@ class ContentWidget extends GetView<HomeController> {
                 ]),
           ),
         ),
-        SizedBox(
-          height: 10.sp,
-        ),
       ],
     );
+  }
+}
+
+class SlowScrollPhysics extends ScrollPhysics {
+  const SlowScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+
+  @override
+  ScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return SlowScrollPhysics(parent: buildParent(ancestor));
+  }
+
+  @override
+  double applyPhysicsToUserOffset(ScrollMetrics position, double offset) {
+    // Adjust the scroll offset to slow down the scrolling
+    return super.applyPhysicsToUserOffset(position, offset * 0.9);
   }
 }

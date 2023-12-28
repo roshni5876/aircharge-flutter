@@ -2,9 +2,7 @@ import 'package:aircharge/app/core/theme/buttons.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +17,7 @@ class ReportView extends GetView<FindChargesScreenController> {
         elevation: 10.0,
         color: AppColors.white,
         margin: EdgeInsets.only(
-            bottom: Get.height * 0.108, left: 8, right: 8, top: 2),
+            bottom: Get.height * 0.108.h, left: 8.w, right: 8.w, top: 2.h),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
@@ -36,9 +34,10 @@ class ReportView extends GetView<FindChargesScreenController> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
-                          Get.back();
+                          controller.selectPage(0);
+                          
                         },
                         child: Icon(
                           Icons.arrow_back_ios_new,
@@ -47,7 +46,7 @@ class ReportView extends GetView<FindChargesScreenController> {
                         ),
                       ),
                       SizedBox(
-                        width: Get.width / 4,
+                        width: Get.width / 4.w,
                       ),
                       Text(
                         "Report Issue",
@@ -115,12 +114,13 @@ class ReportView extends GetView<FindChargesScreenController> {
                             borderRadius: BorderRadius.circular(10),
                             child: Card(
                               shadowColor: AppColors.icongrey,
-                              // borderOnForeground: true,
                               elevation: 1,
                               child: Container(
                                 height: Get.height / 3.64,
                                 decoration: BoxDecoration(
-                                  boxShadow: [BoxShadow(offset: Offset.zero)],
+                                  boxShadow: const [
+                                    BoxShadow(offset: Offset.zero)
+                                  ],
                                   borderRadius: BorderRadius.circular(10),
                                   color: AppColors.white,
                                 ),
@@ -133,13 +133,7 @@ class ReportView extends GetView<FindChargesScreenController> {
                                     hintStyle: TextStyle(
                                         fontSize: 16,
                                         color: AppColors.grey.withOpacity(0.2)),
-                                    // alignLabelWithHint: true,
-
                                     border: InputBorder.none,
-
-                                    // focusedBorder: OutlineInputBorder(
-                                    //     borderSide:
-                                    //         BorderSide(width: 1, color: Colors.redAccent))
                                   ),
                                   expands: true,
                                 ),

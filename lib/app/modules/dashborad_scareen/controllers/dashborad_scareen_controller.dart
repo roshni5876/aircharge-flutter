@@ -7,11 +7,19 @@ import 'package:aircharge/app/modules/setting_screen/views/setting_screen_view.d
 
 class DashboradScareenController extends GetxController
     with GetTickerProviderStateMixin {
+
+ @override
+  void onInit() {
+    selectedTab = 1;
+    super.onInit();
+  }
+
   final _selectedTab = 1.obs;
   int get selectedTab => _selectedTab.value;
   set selectedTab(int value) => _selectedTab.value = value;
 
   int currentIndex = 1;
+  
   Widget currentScreen = const FindChargesScreenView();
 
   navigateToScreen(int index) {
@@ -39,7 +47,7 @@ class DashboradScareenController extends GetxController
   Widget _buildScreen(int index) {
     switch (index) {
       case 0:
-        return HomeView();
+        return const HomeView();
 
       case 1:
         return const FindChargesScreenView();
@@ -52,14 +60,6 @@ class DashboradScareenController extends GetxController
 
   void selectPage(int index) {
     selectedTab = index;
-    // ignore: avoid_print
-    print('current tab $selectedTab');
     update(["screen"]);
-  }
-
-  @override
-  void onInit() {
-    selectedTab = 1;
-    super.onInit();
   }
 }

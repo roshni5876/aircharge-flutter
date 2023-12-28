@@ -1,18 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:aircharge/app/core/theme/buttons.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
-import 'package:aircharge/app/routes/app_pages.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
   const FindChargesDetailsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -21,16 +20,16 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
         elevation: 10.0,
         color: AppColors.white,
         margin: EdgeInsets.only(
-            bottom: Get.height * 0.108, left: 8, right: 8, top: 2),
+            bottom: Get.height * 0.108.h, left: 8.w, right: 8.w, top: 2.h),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.sp),
           ),
           height: Get.height,
           width: Get.width,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10.sp),
             child: Container(
               height: Get.height * 0.60.h,
               color: AppColors.white,
@@ -38,9 +37,9 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
-                          // Get.toNamed(Routes.FIND_CHARGES_SCREEN);
+                          Scaffold.of(context).closeEndDrawer();
                           Get.back();
                         },
                         child: Icon(
@@ -49,51 +48,49 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                           color: AppColors.icongrey,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 2, left: 10, right: 6),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 2.h, left: 10.w, right: 6.w),
                         child: CircleAvatar(
-                          maxRadius: 20,
+                          maxRadius: 20.h,
+                          // ignore: prefer_const_constructors
                           backgroundImage: AssetImage(
                             "assets/images/starbuckslogo.png",
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          "Starbucks",
-                          style: Styles.metaRegular(
-                            color: AppColors.black,
-                            size: 18.sp,
-                          ),
+                      Text(
+                        "Starbucks",
+                        style: Styles.metaRegular(
+                          color: AppColors.black,
+                          size: 18.sp,
                         ),
                       ),
                       GetBuilder<FindChargesScreenController>(
-                        id: "report",
-                        builder: (cont) => InkWell(
-                          onTap: () {
-                            // print(controller.showEndDrawer1 );
-                            Scaffold.of(context).openEndDrawer();
-
-                            // controller.showEndDrawer1 = false;
-                            // print(controller.showEndDrawer1 );
-                            // controller.showEndDrawer1 = true;
-                            // Get.toNamed(Routes.REPORT_ISSUE_SCREEN);
-                          },
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.report_gmailerrorred,
-                                size: 20.sp,
-                                color: AppColors.red,
-                              ),
-                              Text(
-                                'report',
-                                style: Styles.metaRegular(
+                        id: "screen",
+                        builder: (cont) => SlideTransition(
+                          position: controller.animation!,
+                          child: InkWell(
+                            onTap: () {
+                              controller.selectPage(1);
+                              Scaffold.of(context).openEndDrawer();
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.report_gmailerrorred,
+                                  size: 20.sp,
                                   color: AppColors.red,
-                                  size: 14.sp,
                                 ),
-                              )
-                            ],
+                                Text(
+                                  'report',
+                                  style: Styles.metaRegular(
+                                    color: AppColors.red,
+                                    size: 14.sp,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -172,7 +169,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   const Spacer(),
                   PrimaryButton(
                     onPressed: () {},
-                    height: 74,
+                    height: 74.h,
                     width: Get.width,
                     color: AppColors.white,
                     child: Row(
@@ -197,27 +194,28 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     height: 4.h,
                   ),
                   PrimaryButton(
-                      onPressed: () {},
-                      height: 74,
-                      width: Get.width,
-                      color: AppColors.green.withOpacity(0.8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            EvaIcons.navigation2,
-                            color: AppColors.black.withOpacity(0.7),
+                    onPressed: () {},
+                    height: 74.h,
+                    width: Get.width,
+                    color: AppColors.green.withOpacity(0.8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          EvaIcons.navigation2,
+                          color: AppColors.black.withOpacity(0.7),
+                          size: 24.sp,
+                        ),
+                        Text(
+                          " Navigate",
+                          style: Styles.metaRegular(
+                            color: AppColors.black,
                             size: 24.sp,
                           ),
-                          Text(
-                            " Navigate",
-                            style: Styles.metaRegular(
-                              color: AppColors.black,
-                              size: 24.sp,
-                            ),
-                          ),
-                        ],
-                      )),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

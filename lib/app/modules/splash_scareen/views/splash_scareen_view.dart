@@ -50,31 +50,26 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
 
   @override
   dispose() {
-    controller!.dispose(); // you need this
+    controller!.dispose();
     super.dispose();
   }
 
   late final AnimationController? controller = AnimationController(
     duration: const Duration(seconds: 30),
     vsync: this,
-  )
-    ..repeat();
+  )..repeat();
 
   void _startColorAnimation() {
-    const duration = Duration(seconds: 5); // Duration for the entire animation
-    const updateInterval = Duration(milliseconds: 100); // Update interval
+    const duration = Duration(seconds: 5);
+    const updateInterval = Duration(milliseconds: 100);
 
     int steps = duration.inMilliseconds ~/ updateInterval.inMilliseconds;
     int step = 0;
 
     Timer.periodic(updateInterval, (timer) {
-      // Calculate the color based on the current step
       double fraction = step / steps;
       textColor = Color.lerp(Colors.white, Colors.black, fraction)!;
 
-      // Update the UI
-
-      // Check if animation is complete
       if (step++ >= steps) {
         timer.cancel();
       }
@@ -101,15 +96,18 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
                       text: TextSpan(
                         text: 'air',
                         style: Styles.metaRegular(
-                            color: textColor, size: 30.sp, font: FontFamily.meta),
+                            color: textColor,
+                            size: 30.sp,
+                            font: FontFamily.meta),
                       ),
                     ),
                     RichText(
                       text: TextSpan(
                         text: 'charge',
                         style: Styles.metaBold(
-                            color: textColor, size: 30.sp, font: FontFamily.meta),
-
+                            color: textColor,
+                            size: 30.sp,
+                            font: FontFamily.meta),
                       ),
                     ),
                   ],

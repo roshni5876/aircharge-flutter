@@ -24,7 +24,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding:  EdgeInsets.all(10.0.sp),
             child: Row(
               children: [
                 CircleAvatar(
@@ -35,7 +35,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 6),
+                  padding:  EdgeInsets.only(left: 6.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

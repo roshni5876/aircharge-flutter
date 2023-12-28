@@ -29,8 +29,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           Divider(
             color: AppColors.grey.withOpacity(0.1),
@@ -130,7 +130,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
           Row(
             children: [
               Obx(() => SizedBox(
-                    width: Get.width / 1.2,
+                    width: Get.width / 1.2.w,
                     child: Slider(
                       value: settingScreenController
                           .customeAlertRadiusSlider.value,
@@ -178,7 +178,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
           Row(
             children: [
               Obx(() => SizedBox(
-                    width: Get.width / 1.2,
+                    width: Get.width / 1.2.w,
                     child: Slider(
                       value: settingScreenController
                           .batteryPercentageAlerSlider.value,
@@ -239,7 +239,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Divider(
               color: AppColors.grey.withOpacity(0.1),
             ),
