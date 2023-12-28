@@ -2,10 +2,10 @@ import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
-
   @override
   void onInit() {
     super.onInit();
@@ -34,8 +34,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(itemsDemo.length, (index) {
         return Container(
-          width: 12.0,
-          height: 12.0,
+          width: 12.0.w,
+          height: 12.0.h,
           margin: const EdgeInsets.symmetric(horizontal: 5.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -46,16 +46,15 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     );
   }
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  
+
+  final GlobalKey<ScaffoldState> scaffoldKeyDrawerKey =
+      GlobalKey<ScaffoldState>();
 
   void openEndDrawer() {
-    scaffoldKey.currentState?.openEndDrawer();
+    scaffoldKeyDrawerKey.currentState?.openEndDrawer();
   }
 
-
-   var isVisible = true.obs;
-
-  void toggleVisibility() {
-    isVisible.value = !isVisible.value;
-  }
+  var isListViewVisible = true.obs;
 }
+

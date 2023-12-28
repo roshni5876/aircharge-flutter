@@ -16,22 +16,38 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+        height: 83.h,
+        decoration:
+            const BoxDecoration(color: AppColors.bgGreyColor, boxShadow: [
           BoxShadow(
-            color: AppColors.white,
-            offset: Offset.zero,
-            blurRadius: 1.0,
+            color: AppColors.bgGreyColor,
           )
         ]),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          _buildNavItem(0, Icons.discount, 'Offers'),
-          _buildNavItem(1, EvaIcons.flash, 'Find Chargers'),
-          _buildNavItem(2, Icons.settings, 'Settings'),
-        ]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  color: AppColors.white,
+                )
+              ]),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildNavItem(0, Icons.discount, 'Offers'),
+                    _buildNavItem(1, EvaIcons.flash, 'Find Chargers'),
+                    _buildNavItem(2, Icons.settings, 'Settings'),
+                  ]),
+            ),
+          ],
+        ),
       ),
       body: CustomScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
@@ -66,8 +82,6 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
             ),
           ),
           SliverFillRemaining(
-            hasScrollBody: true,
-            fillOverscroll: true,
             child: GetBuilder<DashboradScareenController>(
               id: "screen",
               builder: (cont) => Stack(
@@ -94,7 +108,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.all(4),
+              padding:  EdgeInsets.all(4.sp),
               width: Get.width / 3,
               height: 78.h,
               decoration: BoxDecoration(
@@ -122,7 +136,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                           ? AppColors.black
                           : Colors.grey,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
