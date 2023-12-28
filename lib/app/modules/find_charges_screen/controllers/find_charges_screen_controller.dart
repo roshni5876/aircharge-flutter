@@ -7,43 +7,42 @@ import 'package:get/get.dart';
 class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
   @override
-
   void onInit() {
     super.onInit();
     update(["details"]);
     charges;
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-
-    animation = Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0, 0),)
-        .animate(controller!);
-    
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
   }
 
-  void toggleDrawer() {
-    if (controller!.isDismissed) {
-      controller!.forward();
-    } else {
-      controller!.reverse();
-    }
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  toggleAnimation() {
+    animationController.isDismissed
+        ? animationController.forward()
+        : animationController.reverse();
   }
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textarea = TextEditingController();
 
-  late AnimationController? controller;
-  Animation<Offset>? animation;
+  double rightValue = 0;
+
+  late AnimationController animationController;
+
+  final rightSlide = Get.width * 0.6;
+  // MediaQuery.of(BuildContext as BuildContext).size.width * 0.6;
+
+
+
+
 
   void openEndDrawer() {
     scaffoldKey.currentState?.openEndDrawer();
-  }
-
-  @override
-  void dispose() {
-    controller!.dispose(); 
-    super.dispose();
   }
 
   final _isMapViewVisible = false.obs;

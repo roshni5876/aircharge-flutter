@@ -132,7 +132,7 @@ class ContentWidget extends GetView<HomeController> {
                                               image: AssetImage(
                                                   "${offers[index]['image']}"),
                                               fit: BoxFit.fill)),
-                                      height: Get.height / 4.hashCode,
+                                      height: Get.height / 4.h,
                                       width: Get.width,
                                     ),
                                     Padding(

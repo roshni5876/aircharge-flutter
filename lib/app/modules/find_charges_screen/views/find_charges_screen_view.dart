@@ -19,6 +19,7 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
     Get.put(FindChargesScreenController());
 
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
       endDrawerEnableOpenDragGesture: false,
       key: controller.scaffoldKey,
       backgroundColor: AppColors.white,

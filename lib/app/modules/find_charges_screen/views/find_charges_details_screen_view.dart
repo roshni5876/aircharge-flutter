@@ -36,6 +36,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
               child: Column(
                 children: [
                   Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -49,8 +50,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.only(top: 2.h, left: 10.w, right: 6.w),
+                        padding: EdgeInsets.only(left: 12.w, right: 10),
                         child: CircleAvatar(
                           maxRadius: 20.h,
                           // ignore: prefer_const_constructors
@@ -66,31 +66,30 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                           size: 18.sp,
                         ),
                       ),
+                      SizedBox(width: Get.width / 4.w),
                       GetBuilder<FindChargesScreenController>(
                         id: "screen",
-                        builder: (cont) => SlideTransition(
-                          position: controller.animation!,
-                          child: InkWell(
-                            onTap: () {
-                              controller.selectPage(1);
-                              Scaffold.of(context).openEndDrawer();
-                            },
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.report_gmailerrorred,
-                                  size: 20.sp,
+                        builder: (cont) => InkWell(
+                          onTap: () {
+                            controller.toggleAnimation();
+                            controller.selectPage(1);
+                            Scaffold.of(context).openEndDrawer();
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.report_gmailerrorred,
+                                size: 20.sp,
+                                color: AppColors.red,
+                              ),
+                              Text(
+                                'report',
+                                style: Styles.metaRegular(
                                   color: AppColors.red,
+                                  size: 14.sp,
                                 ),
-                                Text(
-                                  'report',
-                                  style: Styles.metaRegular(
-                                    color: AppColors.red,
-                                    size: 14.sp,
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
                       ),
