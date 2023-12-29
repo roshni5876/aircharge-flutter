@@ -2,7 +2,6 @@ import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -18,14 +17,14 @@ class SettingScreenView extends GetView<SettingScreenController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: ListView(
-        padding: EdgeInsets.only(top: 10.sp, bottom: 72.sp),
+        padding: EdgeInsets.only(top: 15.h, bottom: 72.h),
         children: [
           Center(
             child: Text(
               "Settings",
-              style: Styles.metaBold(
-                color: AppColors.black,
-                size: 18.sp,
+              style: Styles.interBold(
+                color: AppColors.blackText,
+                size: 16.sp,
               ),
             ),
           ),
@@ -36,94 +35,125 @@ class SettingScreenView extends GetView<SettingScreenController> {
             color: AppColors.grey.withOpacity(0.1),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
             child: Text(
               "Notification Settings",
-              style: Styles.metaBold(
+              style: Styles.interBold(
                 color: AppColors.black,
-                size: 18.sp,
+                size: 15.sp,
               ),
             ),
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 2, 12.w, 0),
             title: Text(
               "Low power Notifications",
-              style: Styles.metaMediuam(
+              style: Styles.interRegular(
                 color: AppColors.black,
-                size: 16.sp,
+                size: 14.sp,
               ),
             ),
-            subtitle: Text(
-              "Notify me of nearby charging locations",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 4.h, bottom: 2.h),
+              child: Text(
+                "Notify me of nearby charging locations",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
             trailing: Obx(
-              () => CupertinoSwitch(
-                value: settingScreenController.lowPowerNotification.value ==
-                    'Option 2',
-                onChanged: (value) {
-                  controller.lowPowerNotification.value =
-                      value ? 'Option 2' : 'Option 1';
-                },
-                activeColor: AppColors.green,
+              () => SizedBox(
+                height: 46.h,
+                width: 46.w,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: CupertinoSwitch(
+                    value: controller.lowPowerNotifications.value,
+                    onChanged: (bool value) {
+                      controller.lowPowerNotifications.value = value;
+                    },
+                    activeColor: AppColors.settingScreenSwitchOnColor,
+                  ),
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Divider(
-              color: AppColors.grey.withOpacity(0.1),
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.w,
+            ),
+            child: const Divider(
+              color: AppColors.settingScreenSwitchOffColor,
+              height: 1.8,
+              thickness: 1.0,
             ),
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
             title: Text(
               "Disable notifications on Wifi",
-              style: Styles.metaMediuam(
+              style: Styles.interRegular(
                 color: AppColors.black,
-                size: 16.sp,
+                size: 14.sp,
               ),
             ),
-            subtitle: Text(
-              "Nearby chargers will only alert on mobile data",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 2.h, bottom: 2.h),
+              child: Text(
+                "Nearby chargers will only alert on mobile data",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
             trailing: Obx(
-              () => CupertinoSwitch(
-                value: settingScreenController.disableNotification.value ==
-                    'Option 2',
-                onChanged: (value) {
-                  controller.disableNotification.value =
-                      value ? 'Option 2' : 'Option 1';
-                },
-                activeColor: AppColors.green,
+              () => SizedBox(
+                height: 46.h,
+                width: 46.w,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: CupertinoSwitch(
+                    value: controller.disableNotification.value,
+                    onChanged: (bool value) {
+                      controller.disableNotification.value = value;
+                    },
+                    activeColor: AppColors.settingScreenSwitchOnColor,
+                  ),
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Divider(
-              color: AppColors.grey.withOpacity(0.1),
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: const Divider(
+              color: AppColors.settingScreenSwitchOffColor,
+              height: 1.8,
+              thickness: 1.0,
             ),
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 2, 12.w, 0),
             title: Text(
               "Custom Alert Radius",
-              style: Styles.metaMediuam(
+              style: Styles.interRegular(
                 color: AppColors.black,
-                size: 16.sp,
+                size: 14.sp,
               ),
             ),
-            subtitle: Text(
-              "Only show me nearby chargers within a specific distance",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: Text(
+                "Only show me nearby chargers within a specific distance",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
           ),
@@ -147,30 +177,35 @@ class SettingScreenView extends GetView<SettingScreenController> {
               Text(
                 "1km",
                 style: Styles.metaRegular(
-                  color: AppColors.icongrey,
+                  color: AppColors.blackText,
                   size: 14.sp,
                 ),
               )
             ],
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
             title: Text(
               "Battery Percentage Alert Threshold",
-              style: Styles.metaMediuam(
-                color: AppColors.black,
-                size: 16.sp,
+              style: Styles.interRegular(
+                color: AppColors.blackText,
+                size: 14.sp,
               ),
             ),
-            subtitle: Text(
-              "The battery percentage at which an alert will trigger",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 4.h),
+              child: Text(
+                "The battery percentage at which an alert will trigger",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
             child: Divider(
               color: AppColors.grey.withOpacity(0.1),
             ),
@@ -194,91 +229,111 @@ class SettingScreenView extends GetView<SettingScreenController> {
                   )),
               Text(
                 "20%",
-                style: Styles.metaRegular(
-                  color: AppColors.icongrey,
+                style: Styles.interRegular(
+                  color: AppColors.blackText,
                   size: 14.sp,
                 ),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
             child: Text(
               "Data Tracking",
-              style: Styles.metaBold(
-                color: AppColors.black,
-                size: 18.sp,
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "Allow power monitoring",
-              style: Styles.metaMediuam(
+              style: Styles.interBold(
                 color: AppColors.black,
                 size: 16.sp,
               ),
             ),
-            subtitle: Text(
-              "Send battery and charge data to Aircharge",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+          ),
+          ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
+            title: Text(
+              "Allow power monitoring",
+              style: Styles.interRegular(
+                color: AppColors.blackText,
+                size: 14.sp,
+              ),
+            ),
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 4.h),
+              child: Text(
+                "Send battery and charge data to Aircharge",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
             trailing: Obx(
-              () => CupertinoSwitch(
-                value: settingScreenController.allowPowerMonitoring.value ==
-                    'Option 2',
-                onChanged: (value) {
-                  controller.lowPowerNotification.value =
-                      value ? 'Option 2' : 'Option 1';
-                },
-                activeColor: AppColors.green,
+              () => SizedBox(
+                height: 46.h,
+                width: 46.w,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: CupertinoSwitch(
+                    value: controller.allowPowerMonitoring.value,
+                    onChanged: (bool value) {
+                      controller.allowPowerMonitoring.value = value;
+                    },
+                    activeColor: AppColors.settingScreenSwitchOnColor,
+                  ),
+                ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
-            child: Divider(
-              color: AppColors.grey.withOpacity(0.1),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: const Divider(
+              color: AppColors.settingScreenSwitchOffColor,
             ),
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: -4),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
             title: Text(
               "Allow location tracking",
-              style: Styles.metaMediuam(
-                color: AppColors.black,
-                size: 16.sp,
+              style: Styles.interRegular(
+                color: AppColors.blackText,
+                size: 14.sp,
               ),
             ),
-            subtitle: Text(
-              "Used to show nearby chargers",
-              style: Styles.metaMediuam(
-                color: AppColors.icongrey,
-                size: 12.sp,
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: Text(
+                "Used to show nearby chargers",
+                style: Styles.interRegular(
+                  color: AppColors.settingScreenSubTitleColor,
+                  size: 12.sp,
+                ),
               ),
             ),
             trailing: Obx(
-              () => CupertinoSwitch(
-                value: settingScreenController.alloeloctiontracking.value ==
-                    'Option 2',
-                onChanged: (value) {
-                  controller.disableNotification.value =
-                      value ? 'Option 2' : 'Option 1';
-                },
-                activeColor: AppColors.green,
+              () => SizedBox(
+                height: 46.h,
+                width: 46.w,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: CupertinoSwitch(
+                    value: controller.alloeloctiontracking.value,
+                    onChanged: (value) {
+                      controller.alloeloctiontracking.value = value;
+                    },
+                    activeColor: AppColors.settingScreenSwitchOnColor,
+                  ),
+                ),
               ),
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 16.h,
           ),
           Text(
             'Show Marker Mode',
-            style: Styles.metaBold(
-              size: 20.sp,
-              color: AppColors.grey.withOpacity(0.1),
+            style: Styles.interBold(
+              size: 18.sp,
+              color: AppColors.settingScreenSwitchOffColor,
             ),
             textAlign: TextAlign.center,
           ),

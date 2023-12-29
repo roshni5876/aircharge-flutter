@@ -91,7 +91,81 @@ class Styles {
       height: 1.25.h,
       decoration: textDecoration,
       fontSize: size,
-      
+    );
+  }
+
+  // Inter Bold
+  static TextStyle interBold({
+    double? size,
+    Color? color,
+    FontStyle? fontStyle,
+    TextDecoration? textDecoration,
+    FontFamily? font = FontFamily.inter,
+  }) {
+    return TextStyle(
+      fontWeight: FontWeight.w700,
+      fontFamily: font?.name,
+      color: color,
+      height: 1.25.h,
+      fontSize: size?.sp,
+      fontStyle: fontStyle,
+      decoration: textDecoration,
+    );
+  }
+
+  // Inter Black
+  static TextStyle interBlack({
+    double? size,
+    Color? color,
+    FontStyle? fontStyle,
+    TextDecoration? textDecoration,
+    FontFamily? font = FontFamily.inter,
+  }) {
+    return TextStyle(
+      fontWeight: FontWeight.w900,
+      fontFamily: font?.name,
+      color: color,
+      height: 1.25.h,
+      fontSize: size?.sp,
+      fontStyle: fontStyle,
+      decoration: textDecoration,
+    );
+  }
+
+// Inter Light
+  static TextStyle interLight({
+    double? size,
+    Color? color,
+    FontStyle? fontStyle,
+    TextDecoration? textDecoration,
+    FontFamily? font = FontFamily.inter,
+  }) {
+    return TextStyle(
+      fontWeight: FontWeight.w300,
+      fontFamily: font?.name,
+      color: color,
+      height: 1.25.h,
+      fontSize: size?.sp,
+      fontStyle: fontStyle,
+      decoration: textDecoration,
+    );
+  } // Inter regular
+
+  static TextStyle interRegular({
+    double? size,
+    Color? color,
+    FontStyle? fontStyle,
+    TextDecoration? textDecoration,
+    FontFamily? font = FontFamily.inter,
+  }) {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontFamily: font?.name,
+      color: color,
+      height: 1.30.h,
+      fontSize: size?.sp,
+      fontStyle: fontStyle,
+      decoration: textDecoration,
     );
   }
 }

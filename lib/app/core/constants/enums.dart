@@ -1,1 +1,1 @@
-enum FontFamily { hero, meta }
+enum FontFamily { hero, meta, inter}

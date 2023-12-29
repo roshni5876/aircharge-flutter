@@ -16,13 +16,15 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: Container(
-        height: 83.h,
-        decoration:
-            const BoxDecoration(color: AppColors.bgGreyColor, boxShadow: [
-          BoxShadow(
+        height: 84.h,
+        decoration: const BoxDecoration(
             color: AppColors.bgGreyColor,
-          )
-        ]),
+            boxShadow: [
+              BoxShadow(
+                  color: AppColors.bgGreyColor,
+                  blurRadius: 4.1,
+                  spreadRadius: 1.0)
+            ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -58,7 +60,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                       text: 'air',
                       style: Styles.metaRegular(
                           color: AppColors.lightBlack,
-                          size: 24.sp,
+                          size: 22.sp,
                           font: FontFamily.meta),
                     ),
                   ),
@@ -67,7 +69,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                       text: 'charge',
                       style: Styles.metaBold(
                           color: AppColors.lightBlack,
-                          size: 24.sp,
+                          size: 22.sp,
                           font: FontFamily.meta),
                     ),
                   ),
@@ -108,7 +110,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding:  EdgeInsets.all(4.sp),
+              padding: EdgeInsets.all(4.sp),
               width: Get.width / 3,
               height: 78.h,
               decoration: BoxDecoration(
@@ -121,17 +123,17 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                   Icon(
                     icon,
                     color: controller.selectedTab == index
-                        ? AppColors.black
-                        : Colors.grey,
-                    size: 30.sp,
+                        ? AppColors.bottombarSelectedItemGrey
+                        : AppColors.bottombarUnSelectedItemGrey,
+                    size: 28.sp,
                   ),
                   SizedBox(
                     height: 6.h,
                   ),
                   Text(
                     lable,
-                    style: Styles.metaRegular(
-                      size: 16.sp,
+                    style: Styles.interRegular(
+                      size: 14.sp,
                       color: controller.selectedTab == index
                           ? AppColors.black
                           : Colors.grey,
