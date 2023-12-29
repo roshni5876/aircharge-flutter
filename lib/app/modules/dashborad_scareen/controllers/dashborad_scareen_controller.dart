@@ -1,4 +1,3 @@
-import 'package:aircharge/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_screen_view.dart';
@@ -7,8 +6,7 @@ import 'package:aircharge/app/modules/setting_screen/views/setting_screen_view.d
 
 class DashboradScareenController extends GetxController
     with GetTickerProviderStateMixin {
-
- @override
+  @override
   void onInit() {
     selectedTab = 1;
     super.onInit();
@@ -19,7 +17,7 @@ class DashboradScareenController extends GetxController
   set selectedTab(int value) => _selectedTab.value = value;
 
   int currentIndex = 1;
-  
+
   Widget currentScreen = const FindChargesScreenView();
 
   navigateToScreen(int index) {

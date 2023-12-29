@@ -3,6 +3,7 @@ import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_det
 import 'package:aircharge/app/modules/find_charges_screen/views/report.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
@@ -35,12 +36,7 @@ class FindChargesScreenController extends GetxController
   late AnimationController animationController;
 
   final rightSlide = Get.width * 0.6;
-  // MediaQuery.of(BuildContext as BuildContext).size.width * 0.6;
-
-
-
-
-
+ 
   void openEndDrawer() {
     scaffoldKey.currentState?.openEndDrawer();
   }
@@ -66,5 +62,21 @@ class FindChargesScreenController extends GetxController
   void selectPage(int index) {
     drowerIndex = index;
     update(["screen"]);
+  }
+
+
+
+  ///Google Map
+
+ RxSet<Marker> markers = <Marker>{}.obs;
+
+  void addMarker(double lat, double lng, String markerId) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(markerId),
+        position: LatLng(lat, lng),
+        infoWindow: InfoWindow(title: 'Marker $markerId'),
+      ),
+    );
   }
 }

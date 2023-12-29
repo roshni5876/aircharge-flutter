@@ -9,61 +9,75 @@ class CommanListTile extends GetView<FindChargesScreenController> {
   final String img;
   final String title;
   final String subTitle;
+  final String thirdTitle;
   const CommanListTile(
       {super.key,
       required this.img,
       required this.title,
-      required this.subTitle});
-
-  // get img => null;
+      required this.subTitle,
+      required this.thirdTitle});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 62.h,
+      width: 390.w,
       color: AppColors.white,
+      padding: EdgeInsets.only(top: 4.h, left: 10.w, right: 10.w),
       child: Column(
         children: [
-          Padding(
-            padding:  EdgeInsets.all(10.0.sp),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  maxRadius: 26,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage(
-                    img,
-                  ),
+          Row(
+            children: [
+              CircleAvatar(
+                maxRadius: 24.sp,
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage(
+                  img,
                 ),
-                Padding(
-                  padding:  EdgeInsets.only(left: 6.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: Styles.metaBold(
-                          color: AppColors.black,
-                          size: 18.sp,
-                        ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 6.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      title,
+                      style: Styles.interBold(
+                        color: AppColors.blackText,
+                        size: 15.sp,
                       ),
-                      Text(
-                        subTitle,
-                        style: Styles.metaRegular(
-                          color: AppColors.icongrey,
-                          size: 16.sp,
-                        ),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Text(
+                      subTitle,
+                      style: Styles.interRegular(
+                        color: AppColors.iconGreyColor,
+                        size: 13.sp,
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Text(
+                      thirdTitle,
+                      style: Styles.interRegular(
+                        color: AppColors.iconGreyColor,
+                        size: 13.sp,
+                      ),
+                    ),
+                  ],
                 ),
-                const Spacer(),
-                const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 22,
-                  color: AppColors.darkGrey,
-                ),
-              ],
-            ),
+              ),
+              const Spacer(),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20.sp,
+                color: AppColors.iconGreyColor,
+              ),
+            ],
           ),
         ],
       ),

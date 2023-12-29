@@ -2,13 +2,12 @@ import 'package:get/get.dart';
 
 class SettingScreenController extends GetxController {
 
-  var lowPowerNotification = "Option 2".obs;
+   var lowPowerNotifications = true.obs;
 
-  var disableNotification = "Option 1".obs;
-  var allowPowerMonitoring = "Option 2".obs;
+  var disableNotification = false.obs;
+  var allowPowerMonitoring = true.obs;
 
-var alloeloctiontracking = "Option 2".obs;
-
+  var alloeloctiontracking = false.obs;
 
   var customeAlertRadiusSlider = 0.0.obs;
   var batteryPercentageAlerSlider = 0.0.obs;

@@ -34,8 +34,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(itemsDemo.length, (index) {
         return Container(
-          width: 12.0.w,
-          height: 12.0.h,
+          width: 14.0.w,
+          height: 14.0.h,
           margin: const EdgeInsets.symmetric(horizontal: 5.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -46,8 +46,6 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     );
   }
 
-  
-
   final GlobalKey<ScaffoldState> scaffoldKeyDrawerKey =
       GlobalKey<ScaffoldState>();
 
@@ -57,4 +55,3 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   var isListViewVisible = true.obs;
 }
-

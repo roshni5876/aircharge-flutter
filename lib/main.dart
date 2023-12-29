@@ -17,7 +17,7 @@ void main() {
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
             theme: ThemeData(
-              fontFamily: "Meta",
+              fontFamily: "Inter",
             ),
             builder: (context, child) {
               return MediaQuery(
