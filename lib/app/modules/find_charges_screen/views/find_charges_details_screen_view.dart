@@ -14,7 +14,17 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
   const FindChargesDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return
+     GetBuilder<FindChargesScreenController>(
+      id: "visiblePage",
+      builder: (cont) => AnimatedPositioned(
+        curve: Curves.easeInOut,
+        top: 0,
+        bottom: 0,
+        right: 2,
+        left: controller.isOpened.value ? 2 : Get.width,
+        duration: Duration(milliseconds: 300),
+   child:   Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.sp),
       ),
@@ -79,9 +89,9 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                       id: "screen",
                       builder: (cont) => InkWell(
                         onTap: () {
-                          controller.toggleAnimation();
-                          controller.selectPage(1);
-                          Scaffold.of(context).openEndDrawer();
+                          // controller.toggleAnimation();
+                          // controller.selectPage(1);
+                          // Scaffold.of(context).openEndDrawer();
                         },
                         child: Column(
                           children: [
@@ -235,6 +245,9 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
           ),
         ),
       ),
-    );
-  }
+    )
+ 
+ 
+ )); }
+
 }

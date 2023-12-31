@@ -3,7 +3,6 @@ import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_det
 import 'package:aircharge/app/modules/find_charges_screen/views/report.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
@@ -12,34 +11,55 @@ class FindChargesScreenController extends GetxController
     super.onInit();
     update(["details"]);
     charges;
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    update(["visiblePage"]);
+    reportAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+     update(["reportPage"]);
   }
 
   @override
   void dispose() {
     animationController.dispose();
+    reportAnimationController.dispose();
     super.dispose();
   }
-
-  toggleAnimation() {
-    animationController.isDismissed
-        ? animationController.forward()
-        : animationController.reverse();
-  }
+  // toggleAnimation() {
+  //   animationController.isDismissed
+  //       ? animationController.forward()
+  //       : animationController.reverse();
+  // }
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textarea = TextEditingController();
 
   double rightValue = 0;
 
-  late AnimationController animationController;
+  /// For Details Screens
+  RxBool isOpened = false.obs;
 
-  final rightSlide = Get.width * 0.6;
- 
-  void openEndDrawer() {
-    scaffoldKey.currentState?.openEndDrawer();
-  }
+  late final AnimationController animationController;
+
+  final _isVisible = true.obs;
+  bool get isVisible => this._isVisible.value;
+  set isVisible(bool value) => this._isVisible.value = value;
+
+  ///For Repost Screen
+  RxBool isOpenedReport = false.obs;
+
+  late final AnimationController reportAnimationController;
+
+  
+  final _isVisibleReport = true.obs;
+ bool get isVisibleReport => this._isVisibleReport.value;
+  set isVisibleReport(bool value) => this._isVisibleReport.value = value;
+  
 
   final _isMapViewVisible = false.obs;
   bool get isMapViewVisible => _isMapViewVisible.value;
@@ -64,19 +84,17 @@ class FindChargesScreenController extends GetxController
     update(["screen"]);
   }
 
-
-
   ///Google Map
 
- RxSet<Marker> markers = <Marker>{}.obs;
+//  RxSet<Marker> markers = <Marker>{}.obs;
 
-  void addMarker(double lat, double lng, String markerId) {
-    markers.add(
-      Marker(
-        markerId: MarkerId(markerId),
-        position: LatLng(lat, lng),
-        infoWindow: InfoWindow(title: 'Marker $markerId'),
-      ),
-    );
-  }
+//   void addMarker(double lat, double lng, String markerId) {
+//     markers.add(
+//       Marker(
+//         markerId: MarkerId(markerId),
+//         position: LatLng(lat, lng),
+//         infoWindow: InfoWindow(title: 'Marker $markerId'),
+//       ),
+//     );
+//   }
 }

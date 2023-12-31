@@ -4,15 +4,27 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
   @override
   void onInit() {
     super.onInit();
     update(["dot"]);
-    update(["page"]);
+    // update(["page"]);
     offers;
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
     update(["visiblePage"]);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   /// CarouselSlider
@@ -23,10 +35,14 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   final List<String> itemsDemo = [
-    "assets/images/cofee.png",
-    "assets/images/jam.png",
-    "assets/images/starbucksposter.png",
-    "assets/images/pizzaposter.png"
+    // "assets/images/cofee.png",
+    // "assets/images/jam.png",
+    // "assets/images/starbucksposter.png",
+    // "assets/images/pizzaposter.png"
+
+    "assets/images/offer-ceresole.png",
+    "assets/images/offer-ceresole.png",
+    "assets/images/offer-ceresole.png"
   ];
   RxBool isOpen = false.obs;
   Widget buildDotIndicator(int currentPage) {
@@ -46,12 +62,22 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     );
   }
 
+  final _isVisible = true.obs;
+  bool get isVisible => this._isVisible.value;
+  set isVisible(bool value) => this._isVisible.value = value;
+
+  RxBool isOpened = false.obs;
+
+  late final AnimationController animationController;
+
+  late Animation<Offset> offsetAnimation;
+
   final GlobalKey<ScaffoldState> scaffoldKeyDrawerKey =
       GlobalKey<ScaffoldState>();
 
-  void openEndDrawer() {
-    scaffoldKeyDrawerKey.currentState?.openEndDrawer();
-  }
-
   var isListViewVisible = true.obs;
+
+  void updateStatus() {
+    animationController;
+  }
 }

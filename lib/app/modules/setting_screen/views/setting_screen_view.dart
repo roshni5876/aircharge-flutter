@@ -17,7 +17,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: ListView(
-        padding: EdgeInsets.only(top: 15.h, bottom: 72.h),
+        padding: EdgeInsets.only(
+          top: 15.h,
+          bottom: 72.h,
+        ),
         children: [
           Center(
             child: Text(
@@ -157,31 +160,35 @@ class SettingScreenView extends GetView<SettingScreenController> {
               ),
             ),
           ),
-          Row(
-            children: [
-              Obx(() => SizedBox(
-                    width: Get.width / 1.2.w,
-                    child: Slider(
-                      value: settingScreenController
-                          .customeAlertRadiusSlider.value,
-                      onChanged: (value) {
-                        settingScreenController.customeAlertRadiusSlider.value =
-                            value;
-                      },
-                      min: 0.0,
-                      max: 100.0,
-                      activeColor: AppColors.blue,
-                      inactiveColor: AppColors.grey.withOpacity(0.2),
-                    ),
-                  )),
-              Text(
-                "1km",
-                style: Styles.metaRegular(
-                  color: AppColors.blackText,
-                  size: 14.sp,
-                ),
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.only(right: 16.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => SizedBox(
+                      width: Get.width / 1.2.w,
+                      child: Slider(
+                        value: settingScreenController
+                            .customeAlertRadiusSlider.value,
+                        onChanged: (value) {
+                          settingScreenController
+                              .customeAlertRadiusSlider.value = value;
+                        },
+                        min: 0.0,
+                        max: 100.0,
+                        activeColor: AppColors.blue,
+                        inactiveColor: AppColors.grey.withOpacity(0.2),
+                      ),
+                    )),
+                Text(
+                  "1km",
+                  style: Styles.metaRegular(
+                    color: AppColors.blackText,
+                    size: 14.sp,
+                  ),
+                )
+              ],
+            ),
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -205,36 +212,40 @@ class SettingScreenView extends GetView<SettingScreenController> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.sp),
+            padding: EdgeInsets.symmetric(horizontal: 16.sp),
             child: Divider(
               color: AppColors.grey.withOpacity(0.1),
             ),
           ),
-          Row(
-            children: [
-              Obx(() => SizedBox(
-                    width: Get.width / 1.2.w,
-                    child: Slider(
-                      value: settingScreenController
-                          .batteryPercentageAlerSlider.value,
-                      onChanged: (value) {
-                        settingScreenController
-                            .batteryPercentageAlerSlider.value = value;
-                      },
-                      min: 0.0,
-                      max: 100.0,
-                      activeColor: AppColors.blue,
-                      inactiveColor: AppColors.grey.withOpacity(0.2),
-                    ),
-                  )),
-              Text(
-                "20%",
-                style: Styles.interRegular(
-                  color: AppColors.blackText,
-                  size: 14.sp,
-                ),
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.only(right: 18.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => SizedBox(
+                      width: Get.width / 1.2.w,
+                      child: Slider(
+                        value: settingScreenController
+                            .batteryPercentageAlerSlider.value,
+                        onChanged: (value) {
+                          settingScreenController
+                              .batteryPercentageAlerSlider.value = value;
+                        },
+                        min: 0.0,
+                        max: 100.0,
+                        activeColor: AppColors.blue,
+                        inactiveColor: AppColors.grey.withOpacity(0.2),
+                      ),
+                    )),
+                Text(
+                  "20%",
+                  style: Styles.interRegular(
+                    color: AppColors.blackText,
+                    size: 14.sp,
+                  ),
+                )
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),

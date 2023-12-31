@@ -1,24 +1,24 @@
 List<Map> offers = [
   {
-    "image": "assets/images/cofee.png",
+    "image": "assets/images/secondoffer.png",
     "title": "McDonalds - Leicester Square",
     "subtitle": "McDonalds Monopoly is back!",
     "text": "Peel. Play. Win?",
   },
   {
-    "image": "assets/images/jam.png",
+    "image": "assets/images/firstoffer.png",
     "title": "McDonalds - Leicester Square",
     "subtitle": "McDonalds Monopoly is back!",
     "text": "Peel. Play. Win?",
   },
   {
-    "image": "assets/images/starbucksposter.png",
+    "image": "assets/images/secondoffer.png",
     "title": "McDonalds - Leicester Square",
     "subtitle": "McDonalds Monopoly is back!",
     "text": "Peel. Play. Win?",
   },
   {
-    "image": "assets/images/pizzaposter.png",
+    "image": "assets/images/firstoffer.png",
     "title": "McDonalds - Leicester Square",
     "subtitle": "McDonalds Monopoly is back!",
     "text": "Peel. Play. Win?",
