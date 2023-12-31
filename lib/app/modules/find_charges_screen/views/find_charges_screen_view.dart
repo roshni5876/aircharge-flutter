@@ -13,6 +13,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../controllers/find_charges_screen_controller.dart';
 
@@ -29,76 +30,49 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
       key: controller.scaffoldKey,
       backgroundColor: AppColors.white,
       drawerScrimColor: Colors.transparent,
-      // endDrawer: GetBuilder<FindChargesScreenController>(
-      //     id: "screen", builder: (context) => controller.drowerScreen()),
-      body:
-          // GestureDetector(
-          //   onTap: () {
-          //     if (controller.scaffoldKey.currentState?.isEndDrawerOpen ?? false) {
-          //       Get.back();
-          //     }
-          //   },
-          Stack(
+      body: Stack(
         children: [
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
-          //   child: Column(
-          //     children: [
-          //       Card(
-          //         color: AppColors.white,
-          //         shape: RoundedRectangleBorder(
-          //           borderRadius: BorderRadius.circular(8.sp),
-          //         ),
-          //         borderOnForeground: false,
-          //         elevation: 1.sp,
-          //         child: Container(
-          //           height: 50.14.h,
-          //           decoration: BoxDecoration(
-          //             color: AppColors.white,
-          //             borderRadius: BorderRadius.circular(8.sp),
-          //           ),
-          //           padding: EdgeInsets.only(left: 14.w),
-          //           child: Column(
-          //             children: [
-          //               TextFormField(
-          //                 expands: false,
-          //                 autofocus: false,
-          //                 decoration: InputDecoration(
-          //                   prefixIcon: const ImageIcon(
-          //                     AssetImage(
-          //                       "assets/images/search.png",
-          //                     ),
-          //                   ),
-          //                   prefixIconConstraints: BoxConstraints(maxWidth: 30.sp),
-          //                   prefixIconColor: AppColors.iconGreyColor,
-          //                   hintText: 'Search Public Charging Locations',
-          //                   hintStyle: Styles.interRegular(
-          //                       size: 14.sp, color: AppColors.iconGreyColor),
-          //                   helperStyle: const TextStyle(color: AppColors.grey),
-          //                   fillColor: AppColors.white,
-          //                   filled: true,
-          //                   contentPadding: EdgeInsets.fromLTRB(
-          //                       20.0.w, 10.0..h, 20.0.w, 10.0.h),
-          //                   enabledBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(10.0.sp),
-          //                     borderSide:
-          //                         const BorderSide(color: Colors.white, width: 3.0),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
           Positioned(
             top: 84.h,
-            child: Container(
-              height: Get.height,
-              width: Get.width,
-              color: AppColors.bgGreyColor,
+            child: Obx(
+              () => Visibility(
+                visible: controller.isMapViewVisible,
+                replacement: Container(
+                  height: Get.height,
+                  width: Get.width,
+                  child: Stack(
+                    children: [
+                      GoogleMap(
+                        onMapCreated: (mapController) {
+                          controller.googleMapController = mapController;
+                        },
+                        initialCameraPosition: const CameraPosition(
+                          target: LatLng(
+                              37.7749, -122.4194), // Set initial location
+                          zoom: 8.0,
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Expanded(
+                            flex: 8,
+                            child: Container(),
+                          ),
+                          Expanded(
+                            flex: 13,
+                            child: listViewWidget(),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                child: Container(
+                  height: Get.height,
+                  width: Get.width,
+                  color: AppColors.bgGreyColor,
+                ),
+              ),
             ),
           ),
           Obx(() => Visibility(
@@ -112,46 +86,9 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                   margin: EdgeInsets.only(
                     top: 82.h,
                   ),
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(
-                      top: 30.w,
-                      left: 10.w,
-                      right: 10.w,
-                      bottom: 14.h,
-                    ),
-                    itemCount: charges.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        clipBehavior: Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.sp),
-                        ),
-                        child: GetBuilder<FindChargesScreenController>(
-                          id: "visiblePage",
-                          builder: (cont) => GestureDetector(
-                            onTap: () {
-                              controller.isVisible = false;
-                              controller.isOpened.value =
-                                  !controller.isOpened.value;
-                              if (controller.isOpened.value) {
-                                controller.animationController.forward();
-                              } else {
-                                controller.animationController.reverse();
-                              }
-                              controller.update(["visiblePage"]);
-                              // Scaffold.of(context).openEndDrawer();
-                            },
-                            child: CommanListTile(
-                              img: "${charges[index]['image']}",
-                              title: charges[index]['title'] ?? "",
-                              subTitle: charges[index]['subtitle'] ?? "",
-                              thirdTitle: charges[index]['thirdtitle'] ?? "",
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  child: controller.isMapViewVisible
+                      ? listViewWidget()
+                      : Container(),
                 ),
               )),
           Positioned.fill(
@@ -255,29 +192,29 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                         ),
                       ),
                       Expanded(
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.sp),
-                          ),
-                          color: AppColors.white,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            height: 46.h,
-                            // width: Get.width / 2.24.w,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(6.0.sp),
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.isMapViewVisible =
+                                !controller.isMapViewVisible;
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6.sp),
                             ),
-                            child: Obx(
-                              () => GestureDetector(
-                                onTap: () {
-                                  controller.isMapViewVisible =
-                                      !controller.isMapViewVisible;
-                                },
-                                child: Row(
+                            color: AppColors.white,
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              height: 46.h,
+                              // width: Get.width / 2.24.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(6.0.sp),
+                              ),
+                              child: Obx(
+                                () => Row(
                                   children: [
                                     Image.asset(
-                                      controller.isMapViewVisible
+                                      !controller.isMapViewVisible
                                           ? "assets/images/listview.png"
                                           : "assets/images/mapview.png",
                                       width: 22.w,
@@ -288,7 +225,7 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                                     ),
                                     FittedBox(
                                       child: Text(
-                                        controller.isMapViewVisible
+                                        !controller.isMapViewVisible
                                             ? " List View"
                                             : ' Map View',
                                         style: Styles.interRegular(
@@ -838,22 +775,46 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
         ],
       ),
     );
+  }
 
-    //        Obx(
-    //     () => GoogleMap(
-    //       initialCameraPosition: const CameraPosition(
-    //         target: LatLng(37.7749, -122.4194), // Initial map location
-    //         zoom: 12.0,
-    //       ),
-    //       markers: Set<Marker>.from(controller.markers),
-    //       onMapCreated: (GoogleMapController googleMapController) {
-    //         // You can perform additional operations when the map is created
-    //       },
-    //     ),
-    //   ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+  Widget listViewWidget() {
+    return ListView.builder(
+      padding: EdgeInsets.only(
+        top: 30.w,
+        left: 10.w,
+        right: 10.w,
+        bottom: 14.h,
+      ),
+      itemCount: controller.isMapViewVisible ? charges.length : 3,
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.sp),
+          ),
+          child: GetBuilder<FindChargesScreenController>(
+            id: "visiblePage",
+            builder: (cont) => GestureDetector(
+              onTap: () {
+                controller.isVisible = false;
+                controller.isOpened.value = !controller.isOpened.value;
+                if (controller.isOpened.value) {
+                  controller.animationController.forward();
+                } else {
+                  controller.animationController.reverse();
+                }
+                controller.update(["visiblePage"]);
+              },
+              child: CommanListTile(
+                img: "${charges[index]['image']}",
+                title: charges[index]['title'] ?? "",
+                subTitle: charges[index]['subtitle'] ?? "",
+                thirdTitle: charges[index]['thirdtitle'] ?? "",
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

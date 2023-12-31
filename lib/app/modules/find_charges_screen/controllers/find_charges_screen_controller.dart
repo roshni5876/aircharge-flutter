@@ -3,6 +3,7 @@ import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_det
 import 'package:aircharge/app/modules/find_charges_screen/views/report.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
@@ -21,7 +22,8 @@ class FindChargesScreenController extends GetxController
       vsync: this,
       duration: Duration(seconds: 2),
     );
-     update(["reportPage"]);
+    update(["reportPage"]);
+    update(["mapViewVisiblePage"]);
   }
 
   @override
@@ -30,16 +32,9 @@ class FindChargesScreenController extends GetxController
     reportAnimationController.dispose();
     super.dispose();
   }
-  // toggleAnimation() {
-  //   animationController.isDismissed
-  //       ? animationController.forward()
-  //       : animationController.reverse();
-  // }
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textarea = TextEditingController();
-
-  double rightValue = 0;
 
   /// For Details Screens
   RxBool isOpened = false.obs;
@@ -55,15 +50,21 @@ class FindChargesScreenController extends GetxController
 
   late final AnimationController reportAnimationController;
 
-  
   final _isVisibleReport = true.obs;
- bool get isVisibleReport => this._isVisibleReport.value;
+  bool get isVisibleReport => this._isVisibleReport.value;
   set isVisibleReport(bool value) => this._isVisibleReport.value = value;
-  
 
-  final _isMapViewVisible = false.obs;
+  ///For Map View
+
+  final _isMapViewVisible = true.obs;
   bool get isMapViewVisible => _isMapViewVisible.value;
   set isMapViewVisible(bool value) => _isMapViewVisible.value = value;
+
+  GoogleMapController? googleMapController;
+
+  final _isVisibleMapView = false.obs;
+  bool get isVisibleMapView => this._isVisibleMapView.value;
+  set isVisibleMapView(bool value) => this._isVisibleMapView.value = value;
 
   final _drowerIndex = 0.obs;
   int get drowerIndex => _drowerIndex.value;
