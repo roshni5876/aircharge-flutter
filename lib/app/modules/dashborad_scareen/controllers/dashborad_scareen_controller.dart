@@ -56,8 +56,6 @@ class DashboradScareenController extends GetxController
     }
   }
 
-
-
   void selectPage(int index) {
     selectedTab = index;
     update(["screen"]);

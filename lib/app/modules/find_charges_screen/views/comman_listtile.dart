@@ -20,10 +20,8 @@ class CommanListTile extends GetView<FindChargesScreenController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 62.h,
-      width: 390.w,
       color: AppColors.white,
-      padding: EdgeInsets.only(top: 4.h, left: 10.w, right: 10.w),
+      padding: EdgeInsets.only(top: 4.h, left: 10.w, right: 10.w, bottom: 4.h),
       child: Column(
         children: [
           Row(

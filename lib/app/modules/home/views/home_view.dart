@@ -1,14 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:aircharge/app/core/theme/buttons.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:aircharge/app/modules/home/views/offer_details.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -24,19 +21,24 @@ class HomeView extends GetView<HomeController> {
       HomeController(),
     );
 
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        endDrawerEnableOpenDragGesture: false,
-        drawerEnableOpenDragGesture: false,
-        drawerEdgeDragWidth: 0,
-        key: controller.scaffoldKeyDrawerKey,
-        backgroundColor: AppColors.white,
-        drawerScrimColor: Colors.transparent,
-        body: const ContentWidget(),
-      ),
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: WillPopScope(
+          onWillPop: () async {
+            if (controller.isVisible || controller.isVisibleMultipleOffers) {
+              controller.isVisible = false;
+              controller.isVisibleMultipleOffers = false;
+              controller.isOpened.value = false;
+              controller.isOpenedMultipleOffers.value = false;
+
+              controller.update(["visiblePage"]);
+
+              return false;
+            } else {
+              return true;
+            }
+          },
+          child: const ContentWidget()),
     );
   }
 }
@@ -83,7 +85,8 @@ class ContentWidget extends GetView<HomeController> {
                 ),
                 child: Obx(
                   () => Visibility(
-                    visible: controller.isVisible,
+                    visible: controller.isVisible &&
+                        controller.isVisibleMultipleOffers,
                     replacement: SizedBox(
                       height: Get.height,
                       width: Get.width,
@@ -96,9 +99,9 @@ class ContentWidget extends GetView<HomeController> {
                           itemCount: controller.itemsDemo.length,
                           options: CarouselOptions(
                             aspectRatio: 2.3,
-                            enlargeCenterPage: true,
                             onPageChanged: controller.onPageChanged,
                             viewportFraction: 1.0,
+                            autoPlay: true,
                           ),
                           itemBuilder: (context, index, realIdx) {
                             return Padding(
@@ -129,21 +132,39 @@ class ContentWidget extends GetView<HomeController> {
                                   id: "visiblePage",
                                   builder: (cont) => InkWell(
                                     onTap: () {
-                                      print(controller.isVisible);
-                                      controller.isVisible = false;
+                                      if (index.isEven) {
+                                        controller.isVisible = false;
 
-                                      controller.isOpened.value =
-                                          !controller.isOpened.value;
-                                      if (controller.isOpened.value) {
-                                        controller.animationController
-                                            .forward();
+                                        controller.isOpened.value =
+                                            !controller.isOpened.value;
+                                        if (controller.isOpened.value) {
+                                          controller.animationController
+                                              .forward();
+                                        } else {
+                                          controller.animationController
+                                              .reverse();
+                                        }
+                                        controller.update(["visiblePage"]);
                                       } else {
-                                        controller.animationController
-                                            .reverse();
+                                        controller.isVisibleMultipleOffers =
+                                            false;
+
+                                        controller
+                                                .isOpenedMultipleOffers.value =
+                                            !controller
+                                                .isOpenedMultipleOffers.value;
+                                        if (controller
+                                            .isOpenedMultipleOffers.value) {
+                                          controller
+                                              .animationControllerMultipleOffers
+                                              .forward();
+                                        } else {
+                                          controller
+                                              .animationControllerMultipleOffers
+                                              .reverse();
+                                        }
+                                        controller.update(["visiblePage"]);
                                       }
-                                      controller.update(["visiblePage"]);
-                                      print(controller.isOpened.value);
-                                      // Scaffold.of(context).openEndDrawer();
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -212,166 +233,24 @@ class ContentWidget extends GetView<HomeController> {
         GetBuilder<HomeController>(
           id: "visiblePage",
           builder: (cont) => AnimatedPositioned(
-            curve: Curves.easeInOut,
-            top: 0,
-            bottom: 0,
-            right: 2,
-            left: controller.isOpened.value ? 2 : Get.width,
-            duration: Duration(milliseconds: 300),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.sp),
-              ),
-              // shadowColor: AppColors.iconGreyColor,
-              borderOnForeground: false,
-              elevation: 14.0,
-              color: AppColors.white,
-              margin: EdgeInsets.only(
-                bottom: Get.height * 0.118.h,
-                left: 12.w,
-                right: 12.w,
-                top: 1.h,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                        color: AppColors.iconGreyColor, offset: Offset(0, 0)),
-                  ],
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(8.sp),
-                ),
-                // height: Get.height,
-                // width: Get.width,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: GetBuilder<HomeController>(
-                                  id: "visiblePage",
-                                  builder: (cont) => GestureDetector(
-                                        onTap: () {
-                                          controller.isVisible = true;
-                                          controller.isOpened.value = false;
-                                          controller.animationController
-                                              .reverse();
-                                          controller.update(["visiblePage"]);
-                                        },
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Icon(
-                                            Icons.arrow_back_ios_new,
-                                            size: 18.sp,
-                                            color: AppColors.iconGreyColor,
-                                          ),
-                                        ),
-                                      )),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: CircleAvatar(
-                                // backgroundImage: const AssetImage(
-                                //   "assets/images/starbuckslogo.png",
-                                child: Image.asset(
-                                  "assets/images/starbuckslogo.png",
-                                  width: 40.w,
-                                  height: 40.h,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 8,
-                              child: Center(
-                                child: Text(
-                                  "Starbucks",
-                                  style: Styles.interBold(
-                                    color: AppColors.blackGrey,
-                                    size: 16.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: SizedBox(
-                                width: 6.w,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 4.h,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.sp),
-                              image: const DecorationImage(
-                                  image: AssetImage(
-                                      "assets/images/particuleroffer.png"),
-                                  fit: BoxFit.fill)),
-                          height: Get.height / 4.2.h,
-                          width: Get.width,
-                        ),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        Text(
-                          "Earn rewards in the starbucks loyalty app",
-                          style: Styles.interBold(
-                            color: AppColors.blackText,
-                            size: 14.sp,
-                          ),
-                          maxLines: 2,
-                        ),
-                        Text(
-                          "Expanded offer information",
-                          style: Styles.interRegular(
-                            color: AppColors.black,
-                            size: 12.sp,
-                          ),
-                        ),
-                        SizedBox(
-                          height: Get.height / 3.8.h,
-                        ),
-                        Text(
-                          "Offer ends: dd/mm/yyyy",
-                          style: Styles.interRegular(
-                            color: AppColors.black,
-                            size: 12.sp,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6.h,
-                        ),
-                        PrimaryButton(
-                          onPressed: () {},
-                          height: 56.h,
-                          width: Get.width,
-                          color: AppColors.darkGreen,
-                          child: Text(
-                            "Redeem",
-                            style: Styles.interRegular(
-                              color: AppColors.white,
-                              size: 20.sp,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpened.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const OfferDetails()),
+        ),
+        GetBuilder<HomeController>(
+          id: "visiblePage",
+          builder: (cont) => AnimatedPositioned(
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpenedMultipleOffers.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const MultipleOffers()),
         ),
       ],
     );

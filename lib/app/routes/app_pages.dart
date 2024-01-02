@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:get/get.dart';
 import '../modules/dashborad_scareen/bindings/dashborad_scareen_binding.dart';
 import '../modules/dashborad_scareen/views/dashborad_scareen_view.dart';

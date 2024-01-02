@@ -157,6 +157,7 @@ class Styles {
     FontStyle? fontStyle,
     TextDecoration? textDecoration,
     FontFamily? font = FontFamily.inter,
+    double? worsSpacing,
   }) {
     return TextStyle(
       fontWeight: FontWeight.w400,
@@ -166,6 +167,7 @@ class Styles {
       fontSize: size?.sp,
       fontStyle: fontStyle,
       decoration: textDecoration,
+      wordSpacing: worsSpacing,
     );
   }
 }
