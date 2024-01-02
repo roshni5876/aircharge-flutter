@@ -16,14 +16,13 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.sp),
+        borderRadius: BorderRadius.circular(8.sp),
       ),
-      shadowColor: AppColors.iconGreyColor,
       borderOnForeground: false,
       elevation: 14.0,
       color: AppColors.white,
       margin: EdgeInsets.only(
-        bottom: Get.height * 0.112.h,
+        bottom: Get.height * 0.118.h,
         left: 12.w,
         right: 12.w,
         top: 1.h,
@@ -34,70 +33,86 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
             BoxShadow(color: AppColors.iconGreyColor, offset: Offset(0, 0)),
           ],
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(16.sp),
+          borderRadius: BorderRadius.circular(8.sp),
         ),
-        height: Get.height,
-        width: Get.width,
         child: Padding(
           padding: EdgeInsets.all(10.sp),
-          child: Container(
-            height: Get.height * 0.60.h,
-            color: AppColors.white,
+          child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Scaffold.of(context).closeEndDrawer();
-                        Get.back();
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 18.sp,
-                        color: AppColors.iconGreyColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 12.w, right: 10),
-                      child: CircleAvatar(
-                        maxRadius: 18.sp,
-                        backgroundImage: const AssetImage(
-                          "assets/images/starbuckslogo.png",
+                    Expanded(
+                      flex: 1,
+                      child: GetBuilder<FindChargesScreenController>(
+                        id: "visiblePage",
+                        builder: (cont) => GestureDetector(
+                          onTap: () {
+                            controller.isVisible = true;
+                            controller.isOpened.value = false;
+                            controller.animationController.reverse();
+                            controller.update(["visiblePage"]);
+                          },
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 18.sp,
+                              color: AppColors.iconGreyColor,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    Text(
-                      "Starbucks",
-                      style: Styles.interRegular(
-                        color: AppColors.blackGrey,
-                        size: 16.sp,
+                    Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        child: Image.asset(
+                          "assets/images/starbuckslogo.png",
+                          width: 40.w,
+                          height: 40.h,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                    SizedBox(width: Get.width / 3.w),
-                    GetBuilder<FindChargesScreenController>(
-                      id: "screen",
-                      builder: (cont) => InkWell(
-                        onTap: () {
-                          controller.toggleAnimation();
-                          controller.selectPage(1);
-                          Scaffold.of(context).openEndDrawer();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.report_gmailerrorred,
-                              size: 20.sp,
-                              color: AppColors.red,
-                            ),
-                            Text(
-                              'report',
-                              style: Styles.interRegular(
+                    Expanded(
+                      flex: 9,
+                      child: Text(
+                        "Starbucks",
+                        style: Styles.interBold(
+                          color: AppColors.blackGrey,
+                          size: 16.sp,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GetBuilder<FindChargesScreenController>(
+                        id: "reportPage",
+                        builder: (cont) => GestureDetector(
+                          onTap: () {
+                            controller.isVisibleReport = false;
+                            controller.isOpenedReport.value = true;
+                            controller.reportAnimationController.forward();
+                            controller.update(["reportPage"]);
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.report_gmailerrorred,
+                                size: 20.sp,
                                 color: AppColors.red,
-                                size: 12.sp,
                               ),
-                            )
-                          ],
+                              Text(
+                                'report',
+                                style: Styles.interRegular(
+                                  color: AppColors.red,
+                                  size: 12.sp,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -110,28 +125,33 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0.sp),
                       image: const DecorationImage(
-                          image:
-                              AssetImage("assets/images/starbucksposter.png"),
+                          image: AssetImage("assets/images/findcharges.png"),
                           fit: BoxFit.fill)),
                   height: Get.height / 4.2.h,
                   width: Get.width,
                 ),
                 SizedBox(height: 8.h),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Starbucks",
-                      style: Styles.interBold(
-                        color: AppColors.blackText,
-                        size: 15.sp,
+                    Expanded(
+                      child: Text(
+                        "Starbucks",
+                        style: Styles.interBold(
+                          color: AppColors.blackText,
+                          size: 15.sp,
+                        ),
                       ),
                     ),
-                    Text(
-                      "Temporarily Closed",
-                      style: Styles.interBold(
-                        color: AppColors.red,
-                        size: 11.sp,
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "Temporarily Closed",
+                          style: Styles.interBold(
+                            color: AppColors.red,
+                            size: 11.sp,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -142,17 +162,21 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      "150 Russell sq,\nSouthamton Row London,\nWC1B 5AL, 2.4 miles",
-                      style: Styles.interLight(
-                        color: AppColors.offerDetailsAddresTextGrey,
-                        size: 13.sp,
+                    Expanded(
+                      child: Text(
+                        "150 Russell sq,\nSouthamton Row London,\nWC1B 5AL, 2.4 miles",
+                        style: Styles.interLight(
+                          color: AppColors.offerDetailsAddresTextGrey,
+                          size: 13.sp,
+                        ),
+                        maxLines: 4,
                       ),
-                      maxLines: 4,
                     ),
                   ],
                 ),
-                const Spacer(),
+                SizedBox(
+                  height: Get.height / 20.h,
+                ),
                 Center(
                   child: Text(
                     "Google Review Score",
@@ -180,28 +204,46 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     unratedColor: AppColors.whiteStarRatingColor,
                   ),
                 ),
-                const Spacer(),
+                SizedBox(
+                  height: Get.height / 20.h,
+                ),
                 PrimaryButton(
                   onPressed: () {},
                   height: 56.h,
                   width: Get.width,
                   color: AppColors.whiteStarRatingColor,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.discount,
-                        color: AppColors.seeOfferBtnColor,
-                        size: 24.sp,
-                      ),
-                      Text(
-                        " See Offers",
-                        style: Styles.interRegular(
-                          color: AppColors.seeOfferBtnColor,
-                          size: 20.sp,
+                  child: Center(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 10.w,
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          flex: 1,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.discount,
+                              color: AppColors.seeOfferBtnColor,
+                              size: 24.sp,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              " See Offers",
+                              style: Styles.interRegular(
+                                color: AppColors.seeOfferBtnColor,
+                                size: 20.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -215,16 +257,31 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        EvaIcons.navigation2,
-                        color: AppColors.blackText,
-                        size: 20.sp,
+                      SizedBox(
+                        width: 10.w,
                       ),
-                      Text(
-                        " Navigate",
-                        style: Styles.interRegular(
-                          color: AppColors.blackText,
-                          size: 20.sp,
+                      Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            EvaIcons.navigation2,
+                            color: AppColors.blackText,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            " Navigate",
+                            style: Styles.interRegular(
+                              color: AppColors.blackText,
+                              size: 20.sp,
+                            ),
+                          ),
                         ),
                       ),
                     ],

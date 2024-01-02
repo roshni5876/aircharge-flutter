@@ -10,9 +10,24 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   void onInit() {
     super.onInit();
     update(["dot"]);
-    update(["page"]);
     offers;
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    animationControllerMultipleOffers = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
     update(["visiblePage"]);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   /// CarouselSlider
@@ -23,10 +38,9 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   final List<String> itemsDemo = [
-    "assets/images/cofee.png",
-    "assets/images/jam.png",
-    "assets/images/starbucksposter.png",
-    "assets/images/pizzaposter.png"
+    "assets/images/offer-ceresole.png",
+    "assets/images/offer-ceresole.png",
+    "assets/images/offer-ceresole.png"
   ];
   RxBool isOpen = false.obs;
   Widget buildDotIndicator(int currentPage) {
@@ -46,12 +60,22 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     );
   }
 
-  final GlobalKey<ScaffoldState> scaffoldKeyDrawerKey =
-      GlobalKey<ScaffoldState>();
+  ///Offers
+  final _isVisible = true.obs;
+  bool get isVisible => _isVisible.value;
+  set isVisible(bool value) => _isVisible.value = value;
 
-  void openEndDrawer() {
-    scaffoldKeyDrawerKey.currentState?.openEndDrawer();
-  }
+  RxBool isOpened = false.obs;
 
-  var isListViewVisible = true.obs;
+  late final AnimationController animationController;
+
+  ///Multiple Offers
+  final _isVisibleMultipleOffers = true.obs;
+  bool get isVisibleMultipleOffers => _isVisibleMultipleOffers.value;
+  set isVisibleMultipleOffers(bool value) =>
+      _isVisibleMultipleOffers.value = value;
+
+  late final AnimationController animationControllerMultipleOffers;
+
+  RxBool isOpenedMultipleOffers = false.obs;
 }

@@ -17,7 +17,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: ListView(
-        padding: EdgeInsets.only(top: 15.h, bottom: 72.h),
+        padding: EdgeInsets.only(
+          top: 15.h,
+          bottom: 72.h,
+        ),
         children: [
           Center(
             child: Text(
@@ -55,12 +58,12 @@ class SettingScreenView extends GetView<SettingScreenController> {
               ),
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(top: 4.h, bottom: 2.h),
+              padding: EdgeInsets.only(top: 3.h, bottom: 2.h),
               child: Text(
                 "Notify me of nearby charging locations",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
@@ -107,7 +110,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 "Nearby chargers will only alert on mobile data",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
@@ -152,36 +155,40 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 "Only show me nearby chargers within a specific distance",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
           ),
-          Row(
-            children: [
-              Obx(() => SizedBox(
-                    width: Get.width / 1.2.w,
-                    child: Slider(
-                      value: settingScreenController
-                          .customeAlertRadiusSlider.value,
-                      onChanged: (value) {
-                        settingScreenController.customeAlertRadiusSlider.value =
-                            value;
-                      },
-                      min: 0.0,
-                      max: 100.0,
-                      activeColor: AppColors.blue,
-                      inactiveColor: AppColors.grey.withOpacity(0.2),
-                    ),
-                  )),
-              Text(
-                "1km",
-                style: Styles.metaRegular(
-                  color: AppColors.blackText,
-                  size: 14.sp,
-                ),
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.only(right: 16.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => SizedBox(
+                      width: Get.width / 1.2.w,
+                      child: Slider(
+                        value: settingScreenController
+                            .customeAlertRadiusSlider.value,
+                        onChanged: (value) {
+                          settingScreenController
+                              .customeAlertRadiusSlider.value = value;
+                        },
+                        min: 0.0,
+                        max: 100.0,
+                        activeColor: AppColors.blue,
+                        inactiveColor: AppColors.grey.withOpacity(0.2),
+                      ),
+                    )),
+                Text(
+                  "1km",
+                  style: Styles.metaRegular(
+                    color: AppColors.blackText,
+                    size: 14.sp,
+                  ),
+                )
+              ],
+            ),
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
@@ -199,20 +206,24 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 "The battery percentage at which an alert will trigger",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.sp),
+            padding: EdgeInsets.symmetric(horizontal: 16.sp),
             child: Divider(
               color: AppColors.grey.withOpacity(0.1),
             ),
           ),
-          Row(
-            children: [
-              Obx(() => SizedBox(
+          Padding(
+            padding: EdgeInsets.only(right: 18.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(
+                  () => SizedBox(
                     width: Get.width / 1.2.w,
                     child: Slider(
                       value: settingScreenController
@@ -226,15 +237,17 @@ class SettingScreenView extends GetView<SettingScreenController> {
                       activeColor: AppColors.blue,
                       inactiveColor: AppColors.grey.withOpacity(0.2),
                     ),
-                  )),
-              Text(
-                "20%",
-                style: Styles.interRegular(
-                  color: AppColors.blackText,
-                  size: 14.sp,
+                  ),
                 ),
-              )
-            ],
+                Text(
+                  "20%",
+                  style: Styles.interRegular(
+                    color: AppColors.blackText,
+                    size: 14.sp,
+                  ),
+                )
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
@@ -262,7 +275,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 "Send battery and charge data to Aircharge",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
@@ -305,7 +318,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 "Used to show nearby chargers",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
-                  size: 12.sp,
+                  size: 11.sp,
                 ),
               ),
             ),
@@ -332,7 +345,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
           Text(
             'Show Marker Mode',
             style: Styles.interBold(
-              size: 18.sp,
+              size: 16.sp,
               color: AppColors.settingScreenSwitchOffColor,
             ),
             textAlign: TextAlign.center,
