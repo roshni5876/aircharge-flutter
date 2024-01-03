@@ -21,24 +21,25 @@ class HomeView extends GetView<HomeController> {
       HomeController(),
     );
 
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.white,
-      body: WillPopScope(
-          onWillPop: () async {
-            if (controller.isVisible || controller.isVisibleMultipleOffers) {
-              controller.isVisible = false;
-              controller.isVisibleMultipleOffers = false;
-              controller.isOpened.value = false;
-              controller.isOpenedMultipleOffers.value = false;
+      // body: WillPopScope(
+      //     onWillPop: () async {
+      //       if (controller.isVisible || controller.isVisibleMultipleOffers) {
+      //         controller.isVisible = false;
+      //         controller.isVisibleMultipleOffers = false;
+      //         controller.isOpened.value = false;
+      //         controller.isOpenedMultipleOffers.value = false;
 
-              controller.update(["visiblePage"]);
+      //         controller.update(["visiblePage"]);
 
-              return false;
-            } else {
-              return true;
-            }
-          },
-          child: const ContentWidget()),
+      //         return false;
+      //       } else {
+      //         return true;
+      //       }
+      //     },
+      //     child:
+      body: ContentWidget(),
     );
   }
 }
