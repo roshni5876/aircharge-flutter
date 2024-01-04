@@ -80,6 +80,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                       flex: 9,
                       child: Text(
                         "Starbucks",
+                      
                         style: Styles.interBold(
                           color: AppColors.blackGrey,
                           size: 16.sp,

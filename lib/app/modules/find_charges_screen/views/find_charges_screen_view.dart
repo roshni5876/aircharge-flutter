@@ -2,7 +2,6 @@
 
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
-import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/comman_listtile.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_details_screen_view.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/report.dart';
@@ -311,7 +310,8 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
         right: 10.w,
         bottom: 86.h,
       ),
-      itemCount: charges.length,
+      // itemCount: charges.length,
+      itemCount: controller.findChargesLoctionsList.brandName?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           clipBehavior: Clip.antiAlias,
@@ -332,10 +332,14 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                 controller.update(["visiblePage", "reportPage"]);
               },
               child: CommanListTile(
-                img: "${charges[index]['image']}",
-                title: charges[index]['title'] ?? "",
-                subTitle: charges[index]['subtitle'] ?? "",
-                thirdTitle: charges[index]['thirdtitle'] ?? "",
+                img: "",
+                thirdTitle: "",
+                subTitle: "",
+                // img: "${charges[index]['image']}",
+                // title: charges[index]['title'] ?? "",
+                title: controller.findChargesLoctionsList.brandName.toString(),
+                // subTitle: charges[index]['subtitle'] ?? "",
+                // thirdTitle: charges[index]['thirdtitle'] ?? "",
               ),
             ),
           ),

@@ -6,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CommanListTile extends GetView<FindChargesScreenController> {
-  final String img;
-  final String title;
-  final String subTitle;
-  final String thirdTitle;
+  final String? img;
+  final String? title;
+  final String? subTitle;
+  final String? thirdTitle;
   const CommanListTile(
       {super.key,
       required this.img,
@@ -30,7 +30,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
                 maxRadius: 24.sp,
                 backgroundColor: Colors.transparent,
                 backgroundImage: AssetImage(
-                  img,
+                  img!,
                 ),
               ),
               Padding(
@@ -40,7 +40,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      title,
+                      title!,
                       style: Styles.interBold(
                         color: AppColors.blackText,
                         size: 15.sp,
@@ -50,7 +50,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
                       height: 1.h,
                     ),
                     Text(
-                      subTitle,
+                      subTitle!,
                       style: Styles.interRegular(
                         color: AppColors.iconGreyColor,
                         size: 13.sp,
@@ -60,7 +60,7 @@ class CommanListTile extends GetView<FindChargesScreenController> {
                       height: 1.h,
                     ),
                     Text(
-                      thirdTitle,
+                      thirdTitle!,
                       style: Styles.interRegular(
                         color: AppColors.iconGreyColor,
                         size: 13.sp,

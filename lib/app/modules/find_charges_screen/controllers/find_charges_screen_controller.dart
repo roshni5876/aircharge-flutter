@@ -1,13 +1,20 @@
+import 'package:aircharge/app/data/models/error_model.dart';
 import 'package:aircharge/app/data/models/list_map.dart';
+import 'package:aircharge/app/data/repostorys/api_repostory.dart';
+import 'package:aircharge/app/data/response_dto/find_charges_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:logger/logger.dart';
 
 class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
+  late ApiRepostory _apiRepostory;
+
   @override
   void onInit() {
     super.onInit();
+    getFindChargesListLoctionsList();
     update(["details"]);
     charges;
     animationController = AnimationController(
@@ -67,4 +74,29 @@ class FindChargesScreenController extends GetxController
   final _drowerIndex = 0.obs;
   int get drowerIndex => _drowerIndex.value;
   set drowerIndex(int value) => _drowerIndex.value = value;
+
+  ///API
+  final _findChargesLoctionsList = FindChargesResponceDto().obs;
+  FindChargesResponceDto get findChargesLoctionsList =>
+      _findChargesLoctionsList.value;
+  set findChargesLoctionsList(FindChargesResponceDto value) =>
+      _findChargesLoctionsList.value = value;
+
+  Future<FindChargesResponceDto?> getFindChargesListLoctionsList() async {
+    try {
+      print('###############################################################3');
+      final response = await _apiRepostory.findChargesLoctionsList();
+      
+    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&77777777777777777");
+      findChargesLoctionsList = response;
+      print("fghjksdfgbgfds");
+      print(response.brandName);
+      return response;
+    } on ErrorResponse catch (e) {
+      Logger().d(e.error?.detail ?? '');
+    } catch (e) {
+      Logger().d(e);
+    }
+    return null;
+  }
 }
