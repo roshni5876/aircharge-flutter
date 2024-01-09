@@ -3,14 +3,18 @@
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/data/models/list_map.dart';
+import 'package:aircharge/app/modules/home/views/multiple_offer_details.dart';
 import 'package:aircharge/app/modules/home/views/offer_details.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
+
+GlobalKey<ScaffoldState> homeScffoldKey = GlobalKey<ScaffoldState>();
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -21,7 +25,8 @@ class HomeView extends GetView<HomeController> {
       HomeController(),
     );
 
-    return const Scaffold(
+    return Scaffold(
+      key: homeScffoldKey,
       backgroundColor: AppColors.white,
       // body: WillPopScope(
       //     onWillPop: () async {
@@ -51,42 +56,102 @@ class ContentWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Column(
-          children: [
-            SizedBox(
-              height: 6.sp,
-            ),
-            Text(
-              'Browse Nearby Offers',
-              style: Styles.interBold(
-                color: AppColors.blackText,
-                size: 14.sp,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 2.sp),
-              child: Text(
-                "All locations shown in the list below, have wireless chargers installed on the premises.",
-                textAlign: TextAlign.center,
-                style: Styles.interRegular(
-                  color: AppColors.grey,
-                  size: 10.sp,
+        Positioned(
+          top: 84.h,
+          child: Container(
+            height: Get.height,
+            width: Get.width,
+            color: AppColors.bgGreyColor,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Column(
+            children: [
+              Card(
+                color: AppColors.offerBgWhiteColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.sp),
                 ),
-                maxLines: 2,
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Expanded(
-              child: Container(
-                color: AppColors.bgGreyColor,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12.0.sp,
+                borderOnForeground: false,
+                elevation: 3.sp,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 4.0.w,
                 ),
+                child: Container(
+                  height: 50.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: AppColors.offerBgWhiteColor,
+                    borderRadius: BorderRadius.circular(6.sp),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Offers',
+                      style: Styles.interBold(
+                          size: 16.sp, color: AppColors.blackText),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 7.h,
+              ),
+              Card(
+                color: AppColors.offerBgWhiteColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.sp),
+                ),
+                borderOnForeground: false,
+                elevation: 3.sp,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 4.0.w,
+                ),
+                child: Container(
+                  height: 50.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      color: AppColors.offerBgWhiteColor,
+                      borderRadius: BorderRadius.circular(6.sp)),
+                  child: Center(
+                    child: Text(
+                      'All locations shown in the list below have wireless chargers installed on the premises.',
+                      textAlign: TextAlign.center,
+                      style: Styles.interRegular(
+                          size: 11.sp, color: AppColors.grey),
+                    ),
+                  ),
+                ),
+              ),
+              // SizedBox(
+              //   height: 6.sp,
+              // ),
+              // Text(
+              //   'Browse Nearby Offers',
+              //   style: Styles.interBold(
+              //     color: AppColors.blackText,
+              //     size: 14.sp,
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 2.sp),
+              //   child: Text(
+              //     "All locations shown in the list below, have wireless chargers installed on the premises.",
+              //     textAlign: TextAlign.center,
+              //     style: Styles.interRegular(
+              //       color: AppColors.grey,
+              //       size: 10.sp,
+              //     ),
+              //     maxLines: 2,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10.h,
+              // ),
+              Expanded(
                 child: Obx(
                   () => Visibility(
-                    visible: controller.isVisible &&
+                    visible: controller.isVisibleOfferScreen &&
                         controller.isVisibleMultipleOffers,
                     replacement: SizedBox(
                       height: Get.height,
@@ -94,22 +159,21 @@ class ContentWidget extends GetView<HomeController> {
                     ),
                     child: ListView(
                       physics: const SlowScrollPhysics(),
-                      padding: EdgeInsets.only(top: 0, bottom: 72.sp),
+                      padding: EdgeInsets.only(top: 8.h, bottom: 72.h),
                       children: [
                         CarouselSlider.builder(
                           itemCount: controller.itemsDemo.length,
                           options: CarouselOptions(
-                            aspectRatio: 2.3,
+                            aspectRatio: 2.4,
                             onPageChanged: controller.onPageChanged,
                             viewportFraction: 1.0,
                             autoPlay: true,
                           ),
                           itemBuilder: (context, index, realIdx) {
                             return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 4.0.sp, vertical: 6.0.sp),
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.sp),
+                                borderRadius: BorderRadius.circular(12.sp),
                                 child: Image.asset(
                                   controller.itemsDemo[index],
                                   fit: BoxFit.cover,
@@ -119,11 +183,24 @@ class ContentWidget extends GetView<HomeController> {
                             );
                           },
                         ),
-                        Obx(() => controller
-                            .buildDotIndicator(controller.currentPage.value)),
+                        Obx(
+                          () => controller
+                              .buildDotIndicator(controller.currentPage.value),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Center(
+                          child: Text(
+                            'Browse Nearby Offers',
+                            style: Styles.interBold(
+                                size: 16.sp, color: AppColors.blackText),
+                          ),
+                        ),
                         ListView.builder(
                             padding: EdgeInsets.only(
-                                top: 3.sp, left: 4.w, right: 4.w),
+                              top: 3.sp,
+                            ),
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: offers.length,
@@ -134,11 +211,13 @@ class ContentWidget extends GetView<HomeController> {
                                   builder: (cont) => InkWell(
                                     onTap: () {
                                       if (index.isEven) {
-                                        controller.isVisible = false;
+                                        controller.isVisibleOfferScreen = false;
 
-                                        controller.isOpened.value =
-                                            !controller.isOpened.value;
-                                        if (controller.isOpened.value) {
+                                        controller.isOpenedOfferScreen.value =
+                                            !controller
+                                                .isOpenedOfferScreen.value;
+                                        if (controller
+                                            .isOpenedOfferScreen.value) {
                                           controller.animationController
                                               .forward();
                                         } else {
@@ -228,8 +307,8 @@ class ContentWidget extends GetView<HomeController> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         GetBuilder<HomeController>(
           id: "visiblePage",
@@ -238,7 +317,7 @@ class ContentWidget extends GetView<HomeController> {
               top: 0,
               bottom: 0,
               right: 2,
-              left: controller.isOpened.value ? 2 : Get.width,
+              left: controller.isOpenedOfferScreen.value ? 2 : Get.width,
               duration: const Duration(milliseconds: 300),
               child: const OfferDetails()),
         ),
@@ -252,6 +331,17 @@ class ContentWidget extends GetView<HomeController> {
               left: controller.isOpenedMultipleOffers.value ? 2 : Get.width,
               duration: const Duration(milliseconds: 300),
               child: const MultipleOffers()),
+        ),
+        GetBuilder<HomeController>(
+          id: "visiblePage",
+          builder: (cont) => AnimatedPositioned(
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpenedOfferScreen.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const OfferDetails()),
         ),
       ],
     );

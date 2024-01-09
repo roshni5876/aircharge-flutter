@@ -14,9 +14,12 @@ class FindChargesScreenController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    getFindChargesListLoctionsList();
+    // getFindChargesListLoctionsList();
     update(["details"]);
     charges;
+
+    scrollController.addListener(_scrollListener);
+
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -28,6 +31,7 @@ class FindChargesScreenController extends GetxController
       duration: const Duration(seconds: 2),
     );
     update(["reportPage"]);
+    update(["reportPageCommentTextArea"]);
     update(["mapViewVisiblePage"]);
   }
 
@@ -35,11 +39,34 @@ class FindChargesScreenController extends GetxController
   void dispose() {
     animationController.dispose();
     reportAnimationController.dispose();
+    textarea.dispose();
     super.dispose();
   }
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  ///Call DashbordScreen
+  void findChargesResetState() {
+    isVisible = true;
+    isOpened.value = false;
+    update(["visiblePage"]);
+    isVisibleReport = true;
+    isOpenedReport.value = false;
+    update([
+      "reportPage",
+    ]);
+  }
+
   TextEditingController textarea = TextEditingController();
+
+  ///For Listviw Items
+  final ScrollController scrollController = ScrollController();
+  RxInt visibleItemCount = 3.obs;
+
+    void _scrollListener() {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      // User reached the end of the list, load more items
+      visibleItemCount += 10; // Adjust the number of items to load as needed
+    }
+  }
 
   /// For Details Screens
   RxBool isOpened = false.obs;
@@ -52,6 +79,10 @@ class FindChargesScreenController extends GetxController
 
   ///For Report Screen
   RxBool isOpenedReport = false.obs;
+
+  final _maxCharacters = 500.obs;
+  int get maxCharacters => this._maxCharacters.value;
+  set maxCharacters(int value) => this._maxCharacters.value = value;
 
   late final AnimationController reportAnimationController;
 
@@ -86,8 +117,9 @@ class FindChargesScreenController extends GetxController
     try {
       print('###############################################################3');
       final response = await _apiRepostory.findChargesLoctionsList();
-      
-    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&77777777777777777");
+
+      print(
+          "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&77777777777777777");
       findChargesLoctionsList = response;
       print("fghjksdfgbgfds");
       print(response.brandName);

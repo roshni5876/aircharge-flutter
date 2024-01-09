@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color bgGreyColor = Color(0xFFF5F5F5);
+  static const Color offerBgWhiteColor = Color(0xFFFCFCFC);
   static const Color iconGreyColor = Color(0xFF6b6b6b);
   static const Color white = Color(0xffffffff);
   static const Color blackText = Color(0xff231F20);
   static const Color black = Color(0xFF000000);
   static const Color grey = Color(0xFF7a7676);
+
+  static const Color reportCommentColor = Color(0xFFCBCBCB);
   static const Color green = Color(0xFF5fda7b);
   static const Color darkGreen = Color(0xFF005433);
   static const Color bottombarSelectedItemGrey = Color(0xFF404040);

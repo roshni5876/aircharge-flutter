@@ -85,6 +85,8 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
           children: [
             Image.asset(
               'assets/images/loading.png',
+              height: 60.h,
+              width: 90.w,
             ),
             AnimatedBuilder(
               animation: controller!,
@@ -97,7 +99,7 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
                         text: 'air',
                         style: Styles.metaRegular(
                             color: textColor,
-                            size: 30.sp,
+                            size: 40.sp,
                             font: FontFamily.meta),
                       ),
                     ),
@@ -106,7 +108,7 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
                         text: 'charge',
                         style: Styles.metaBold(
                             color: textColor,
-                            size: 30.sp,
+                            size: 40.sp,
                             font: FontFamily.meta),
                       ),
                     ),

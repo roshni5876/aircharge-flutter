@@ -27,8 +27,8 @@ class CommanListTile extends GetView<FindChargesScreenController> {
           Row(
             children: [
               CircleAvatar(
-                maxRadius: 24.sp,
-                backgroundColor: Colors.transparent,
+                maxRadius: 25.sp,
+                backgroundColor: Colors.transparent,                  
                 backgroundImage: AssetImage(
                   img!,
                 ),

@@ -10,8 +10,7 @@ class ApiRepostory{
 
   
   //MARK: findChargesLoctionsList
-  Future<FindChargesResponceDto> findChargesLoctionsList(
-      {String? type}) async {
+  Future<FindChargesResponceDto> findChargesLoctionsList() async {
     final response = await apiControllerV1.get(
         path:  ApiEndPoints.findChargesLoctionsList);
     return FindChargesResponceDto.fromJson(response);

@@ -36,12 +36,15 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
           borderRadius: BorderRadius.circular(8.sp),
         ),
         child: Padding(
-          padding: EdgeInsets.all(10.sp),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
+          padding: EdgeInsets.symmetric(vertical: 4.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                ),
+                child: Row(
                   children: [
                     Expanded(
                       flex: 1,
@@ -80,7 +83,6 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                       flex: 9,
                       child: Text(
                         "Starbucks",
-                      
                         style: Styles.interBold(
                           color: AppColors.blackGrey,
                           size: 16.sp,
@@ -119,10 +121,15 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 8.h,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
                 ),
-                Container(
+                child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0.sp),
                       image: const DecorationImage(
@@ -131,8 +138,13 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   height: Get.height / 4.2.h,
                   width: Get.width,
                 ),
-                SizedBox(height: 8.h),
-                Row(
+              ),
+              SizedBox(height: 8.h),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                ),
+                child: Row(
                   children: [
                     Expanded(
                       child: Text(
@@ -157,15 +169,20 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 4.h,
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
                 ),
-                Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Text(
-                        "150 Russell sq,\nSouthamton Row London,\nWC1B 5AL, 2.4 miles",
+                        "150 Russell sq,\nSouthamton Row London,\nWC1B 5AL, \n2.4 miles",
                         style: Styles.interLight(
                           color: AppColors.offerDetailsAddresTextGrey,
                           size: 13.sp,
@@ -175,42 +192,47 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: Get.height / 20.h,
-                ),
-                Center(
-                  child: Text(
-                    "Google Review Score",
-                    style: Styles.interRegular(
-                      color: AppColors.blackText,
-                      size: 14.sp,
-                    ),
-                    maxLines: 4,
+              ),
+              // SizedBox(
+              //   height: Get.height / 20.h,
+              // ),
+              Spacer(),
+              Center(
+                child: Text(
+                  "Google Review Score",
+                  style: Styles.interRegular(
+                    color: AppColors.blackText,
+                    size: 14.sp,
                   ),
+                  maxLines: 4,
                 ),
-                Center(
-                  child: RatingBar.builder(
-                    initialRating: 3,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      size: 18.sp,
-                      color: AppColors.yellowStarRatingColor,
-                    ),
-                    onRatingUpdate: (rating) {},
-                    unratedColor: AppColors.whiteStarRatingColor,
+              ),
+              Center(
+                child: RatingBar.builder(
+                  initialRating: 4,
+                  ignoreGestures: true,
+                  itemCount: 5,
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    size: 18.sp,
+                    color: AppColors.yellowStarRatingColor,
                   ),
+                  onRatingUpdate: (rating) {},
+                  unratedColor: AppColors.whiteStarRatingColor,
                 ),
-                SizedBox(
-                  height: Get.height / 20.h,
+              ),
+              // SizedBox(
+              //   height: Get.height / 20.h,
+              // ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 6.w,
                 ),
-                PrimaryButton(
+                child: PrimaryButton(
                   onPressed: () {},
-                  height: 56.h,
+                  height: 62.h,
                   width: Get.width,
                   color: AppColors.whiteStarRatingColor,
                   child: Center(
@@ -247,12 +269,14 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 4.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 6.w,
                 ),
-                PrimaryButton(
+                child: PrimaryButton(
                   onPressed: () {},
-                  height: 56.h,
+                  height: 62.h,
                   width: Get.width,
                   color: AppColors.green,
                   child: Row(
@@ -288,8 +312,11 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+            ],
           ),
         ),
       ),

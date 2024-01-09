@@ -1,19 +1,24 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:math';
+
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
+import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/comman_listtile.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_details_screen_view.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/report.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../controllers/find_charges_screen_controller.dart';
 
 class FindChargesScreenView extends GetView<FindChargesScreenController> {
-  const FindChargesScreenView({Key? key}) : super(key: key);
+  FindChargesScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.put(FindChargesScreenController());
@@ -64,15 +69,18 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                           Column(
                             children: [
                               Expanded(
-                                flex: 8,
+                                flex: 3,
                                 child: Container(),
                               ),
                               Expanded(
-                                flex: 13,
+                                flex: 5,
                                 child: Column(
                                   children: [
-                                    Expanded(child: listViewWidget()),
+                                    Expanded(
+                                      child: listViewWidget(false),
+                                    ),
                                     const Expanded(
+                                      flex: 1,
                                       child: SizedBox(),
                                     ),
                                   ],
@@ -105,14 +113,14 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                     top: 82.h,
                   ),
                   child: controller.isMapViewVisible
-                      ? listViewWidget()
+                      ? listViewWidget(true)
                       : Container(),
                 ),
               )),
           Positioned.fill(
             top: 0.h,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h),
               child: Column(
                 children: [
                   Card(
@@ -302,16 +310,20 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
     );
   }
 
-  Widget listViewWidget() {
+  Widget listViewWidget(bool displayAllItems) {
     return ListView.builder(
+      controller: controller.scrollController,
       padding: EdgeInsets.only(
         top: 30.h,
         left: 10.w,
         right: 10.w,
         bottom: 86.h,
       ),
-      // itemCount: charges.length,
-      itemCount: controller.findChargesLoctionsList.brandName?.length ?? 0,
+      itemCount: displayAllItems
+          ? charges.length
+          : min(charges.length, controller.visibleItemCount.value),
+      // itemCount: itemCount,
+      // itemCount: controller.findChargesLoctionsList.brandName?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           clipBehavior: Clip.antiAlias,
@@ -332,14 +344,14 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
                 controller.update(["visiblePage", "reportPage"]);
               },
               child: CommanListTile(
-                img: "",
-                thirdTitle: "",
-                subTitle: "",
-                // img: "${charges[index]['image']}",
-                // title: charges[index]['title'] ?? "",
-                title: controller.findChargesLoctionsList.brandName.toString(),
-                // subTitle: charges[index]['subtitle'] ?? "",
-                // thirdTitle: charges[index]['thirdtitle'] ?? "",
+                // img: "",
+                // thirdTitle: "",
+                // subTitle: "",
+                img: "${charges[index]['image']}",
+                title: charges[index]['title'] ?? "",
+                // title: controller.findChargesLoctionsList.brandName.toString(),
+                subTitle: charges[index]['subtitle'] ?? "",
+                thirdTitle: charges[index]['thirdtitle'] ?? "",
               ),
             ),
           ),

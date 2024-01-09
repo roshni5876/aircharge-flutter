@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -20,17 +21,21 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: SizedBox(
-          height: height,
-          width: width,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              backgroundColor: color,
+        child: Card(
+          elevation: 2.sp,
+          child: SizedBox(
+            height: height,
+            width: width,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                elevation: 3.sp,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                backgroundColor: color,
+              ),
+              onPressed: onPressed,
+              child: child,
             ),
-            onPressed: onPressed,
-            child: child,
           ),
         ),
       );

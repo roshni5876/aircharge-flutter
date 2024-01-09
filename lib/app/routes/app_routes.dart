@@ -12,7 +12,6 @@ abstract class Routes {
   static const SETTING_SCREEN = _Paths.SETTING_SCREEN;
 
   
-  static const REPORT_ISSUE_SCREEN = _Paths.REPORT_ISSUE_SCREEN;
 }
 
 abstract class _Paths {
@@ -23,5 +22,4 @@ abstract class _Paths {
   static const FIND_CHARGES_SCREEN = '/find-charges-screen';
   static const SETTING_SCREEN = '/setting-screen';
 
-  static const REPORT_ISSUE_SCREEN = '/report-issue-screen';
 }

@@ -27,7 +27,17 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   @override
   void dispose() {
     animationController.dispose();
+    animationControllerMultipleOffers.dispose();
     super.dispose();
+  }
+
+  ///Call DashbordScreen
+  void homeResetState() {
+    isVisibleOfferScreen = true;
+    isOpenedOfferScreen.value = false;
+    isVisibleMultipleOffers = true;
+    isOpenedMultipleOffers.value = false;
+    update(["visiblePage"]);
   }
 
   /// CarouselSlider
@@ -48,8 +58,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(itemsDemo.length, (index) {
         return Container(
-          width: 14.0.w,
-          height: 14.0.h,
+          width: 10.0.w,
+          height: 10.0.h,
           margin: const EdgeInsets.symmetric(horizontal: 5.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -61,11 +71,11 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   ///Offers
-  final _isVisible = true.obs;
-  bool get isVisible => _isVisible.value;
-  set isVisible(bool value) => _isVisible.value = value;
+  final _isVisibleOfferScreen = true.obs;
+  bool get isVisibleOfferScreen => _isVisibleOfferScreen.value;
+  set isVisibleOfferScreen(bool value) => _isVisibleOfferScreen.value = value;
 
-  RxBool isOpened = false.obs;
+  RxBool isOpenedOfferScreen = false.obs;
 
   late final AnimationController animationController;
 

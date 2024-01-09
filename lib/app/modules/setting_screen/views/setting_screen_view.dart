@@ -88,10 +88,9 @@ class SettingScreenView extends GetView<SettingScreenController> {
             padding: EdgeInsets.symmetric(
               horizontal: 12.w,
             ),
-            child: const Divider(
-              color: AppColors.settingScreenSwitchOffColor,
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
               height: 1.8,
-              thickness: 1.0,
             ),
           ),
           ListTile(
@@ -133,26 +132,25 @@ class SettingScreenView extends GetView<SettingScreenController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: const Divider(
-              color: AppColors.settingScreenSwitchOffColor,
-              height: 1.8,
-              thickness: 1.0,
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
+              height: 0.0,
             ),
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
-            contentPadding: EdgeInsets.fromLTRB(12.w, 2, 12.w, 0),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
             title: Text(
               "Custom Alert Radius",
               style: Styles.interRegular(
-                color: AppColors.black,
+                color: AppColors.blackText,
                 size: 14.sp,
               ),
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(top: 2.h),
+              padding: EdgeInsets.only(top: 4.h),
               child: Text(
-                "Only show me nearby chargers within a specific distance",
+                "Only show me nearby chargers within a specific distanc",
                 style: Styles.interRegular(
                   color: AppColors.settingScreenSubTitleColor,
                   size: 11.sp,
@@ -190,6 +188,13 @@ class SettingScreenView extends GetView<SettingScreenController> {
               ],
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 0),
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
+              height: 0.0,
+            ),
+          ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
             contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
@@ -209,12 +214,6 @@ class SettingScreenView extends GetView<SettingScreenController> {
                   size: 11.sp,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.sp),
-            child: Divider(
-              color: AppColors.grey.withOpacity(0.1),
             ),
           ),
           Padding(
@@ -250,7 +249,18 @@ class SettingScreenView extends GetView<SettingScreenController> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 0),
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
+              height: 0.0,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: 10.w,
+              right: 10.w,
+              top: 18.h,
+            ),
             child: Text(
               "Data Tracking",
               style: Styles.interBold(
@@ -261,16 +271,16 @@ class SettingScreenView extends GetView<SettingScreenController> {
           ),
           ListTile(
             visualDensity: const VisualDensity(vertical: -4),
-            contentPadding: EdgeInsets.fromLTRB(12.w, 0, 12.w, 0),
+            contentPadding: EdgeInsets.fromLTRB(12.w, 2, 12.w, 0),
             title: Text(
               "Allow power monitoring",
               style: Styles.interRegular(
-                color: AppColors.blackText,
+                color: AppColors.black,
                 size: 14.sp,
               ),
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(top: 4.h),
+              padding: EdgeInsets.only(top: 3.h, bottom: 2.h),
               child: Text(
                 "Send battery and charge data to Aircharge",
                 style: Styles.interRegular(
@@ -297,9 +307,12 @@ class SettingScreenView extends GetView<SettingScreenController> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: const Divider(
-              color: AppColors.settingScreenSwitchOffColor,
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.w,
+            ),
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
+              height: 1.8,
             ),
           ),
           ListTile(
@@ -308,12 +321,12 @@ class SettingScreenView extends GetView<SettingScreenController> {
             title: Text(
               "Allow location tracking",
               style: Styles.interRegular(
-                color: AppColors.blackText,
+                color: AppColors.black,
                 size: 14.sp,
               ),
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(top: 2.h),
+              padding: EdgeInsets.only(top: 2.h, bottom: 2.h),
               child: Text(
                 "Used to show nearby chargers",
                 style: Styles.interRegular(
@@ -329,9 +342,9 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: CupertinoSwitch(
-                    value: controller.alloeloctiontracking.value,
-                    onChanged: (value) {
-                      controller.alloeloctiontracking.value = value;
+                    value: controller.allowloctiontracking.value,
+                    onChanged: (bool value) {
+                      controller.allowloctiontracking.value = value;
                     },
                     activeColor: AppColors.settingScreenSwitchOnColor,
                   ),
@@ -339,20 +352,25 @@ class SettingScreenView extends GetView<SettingScreenController> {
               ),
             ),
           ),
-          SizedBox(
-            height: 16.h,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: Divider(
+              color: AppColors.grey.withOpacity(0.1),
+              height: 0.0,
+            ),
           ),
+          SizedBox(height: Get.height / 15.h),
           Text(
             'Show Marker Mode',
             style: Styles.interBold(
-              size: 16.sp,
+              size: 14.sp,
               color: AppColors.settingScreenSwitchOffColor,
             ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 10.h,
-          ),
+            height: 16.h,
+          )
         ],
       ),
     );

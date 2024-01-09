@@ -13,8 +13,5 @@ class SplashScareenController extends GetxController {
         const DashboradScareenView(),
       );
     });
-
-   
-    
   }
 }

@@ -37,7 +37,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FIND_CHARGES_SCREEN,
-      page: () => const FindChargesScreenView(),
+      page: () =>  FindChargesScreenView(),
       binding: FindChargesScreenBinding(),
     ),
     GetPage(

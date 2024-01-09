@@ -16,14 +16,14 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: Container(
-        height: 84.h,
+        height: 80.h,
         decoration: const BoxDecoration(
             color: AppColors.bgGreyColor,
             boxShadow: [
               BoxShadow(
-                  color: AppColors.bgGreyColor,
-                  blurRadius: 4.1,
-                  spreadRadius: 1.0)
+                  color: AppColors.iconGreyColor,
+                  blurRadius: 2.0,
+                  spreadRadius: 0)
             ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -37,9 +37,21 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildNavItem(0, Icons.discount, 'Offers'),
-                    _buildNavItem(1, EvaIcons.flash, 'Find Chargers'),
-                    _buildNavItem(2, Icons.settings, 'Settings'),
+                    _buildNavItem(
+                      index: 0,
+                      iconOrImage: "assets/images/offer.png",
+                      lable: 'Offers',
+                    ),
+                    _buildNavItem(
+                      index: 1,
+                      iconOrImage: EvaIcons.flash,
+                      lable: 'Find Chargers',
+                    ),
+                    _buildNavItem(
+                      index: 2,
+                      iconOrImage: Icons.settings,
+                      lable: 'Settings',
+                    ),
                   ]),
             ),
           ],
@@ -98,12 +110,13 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String lable) {
+  Widget _buildNavItem({int? index, dynamic iconOrImage, String? lable}) {
+    bool isImage = iconOrImage is String;
     return GetBuilder<DashboradScareenController>(
       id: "screen",
       builder: (cont) => InkWell(
         onTap: () {
-          controller.selectedTab = index;
+          controller.selectedTab = index!;
           cont.navigateToScreen(index);
         },
         child: Column(
@@ -120,18 +133,27 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
               ),
               child: Column(
                 children: [
-                  Icon(
-                    icon,
-                    color: controller.selectedTab == index
-                        ? AppColors.bottombarSelectedItemGrey
-                        : AppColors.bottombarUnSelectedItemGrey,
-                    size: 28.sp,
-                  ),
+                  isImage
+                      ? Image.asset(
+                          iconOrImage,
+                          width: 28.0.w,
+                          height: 28.0.h,
+                          color: controller.selectedTab == index
+                              ? AppColors.bottombarSelectedItemGrey
+                              : AppColors.bottombarUnSelectedItemGrey,
+                        )
+                      : Icon(
+                          iconOrImage,
+                          size: 28.0.sp,
+                          color: controller.selectedTab == index
+                              ? AppColors.bottombarSelectedItemGrey
+                              : AppColors.bottombarUnSelectedItemGrey,
+                        ),
                   SizedBox(
                     height: 6.h,
                   ),
                   Text(
-                    lable,
+                    lable!,
                     style: Styles.interRegular(
                       size: 14.sp,
                       color: controller.selectedTab == index

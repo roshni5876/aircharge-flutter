@@ -14,6 +14,7 @@ void main() async {
         splitScreenMode: false,
         builder: (BuildContext context, Widget? xyz) {
           return GetMaterialApp(
+            // key: Get.key,
             onInit: () {
               Get.put(ApiControllerV1());
             

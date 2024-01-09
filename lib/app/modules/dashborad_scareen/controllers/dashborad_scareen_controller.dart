@@ -1,3 +1,5 @@
+import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
+import 'package:aircharge/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aircharge/app/modules/find_charges_screen/views/find_charges_screen_view.dart';
@@ -13,14 +15,18 @@ class DashboradScareenController extends GetxController
   }
 
   final _selectedTab = 1.obs;
+
   int get selectedTab => _selectedTab.value;
+
   set selectedTab(int value) => _selectedTab.value = value;
 
   int currentIndex = 1;
 
-  Widget currentScreen = const FindChargesScreenView();
+  Widget currentScreen = FindChargesScreenView();
 
-  navigateToScreen(int index) {
+  navigateToScreen(
+    int index,
+  ) {
     AnimationController controller = AnimationController(
       duration: const Duration(milliseconds: 400),
       vsync: this,
@@ -42,19 +48,45 @@ class DashboradScareenController extends GetxController
     controller.forward();
   }
 
-  Widget _buildScreen(int index) {
+  Widget _buildScreen(
+    int index,
+  ) {
     switch (index) {
       case 0:
+        void resetHomeState() {
+          if (currentIndex == 0) {
+            HomeController homeController = Get.find<HomeController>();
+            homeController.homeResetState();
+          }
+        }
+        resetHomeState();
         return const HomeView();
 
       case 1:
-        return const FindChargesScreenView();
+        void resetFindChargesState() {
+          if (currentIndex == 1) {
+            FindChargesScreenController findChargesScreenController =
+                Get.find<FindChargesScreenController>();
+            findChargesScreenController.findChargesResetState();
+          }
+        }
+        resetFindChargesState();
+        return FindChargesScreenView();
       case 2:
         return const SettingScreenView();
       default:
+        void resetHomeState() {
+          if (currentIndex == 0) {
+            HomeController homeController = Get.find<HomeController>();
+            homeController.homeResetState();
+          }
+        }
+        resetHomeState();
         return const HomeView();
     }
   }
+
+  buildScreen(int index) {}
 
   void selectPage(int index) {
     selectedTab = index;
