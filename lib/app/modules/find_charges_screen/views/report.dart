@@ -16,24 +16,34 @@ class ReportView extends GetView<FindChargesScreenController> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.sp),
+        borderRadius: BorderRadius.circular(10.sp),
       ),
       borderOnForeground: false,
-      elevation: 14.0,
       color: AppColors.white,
       margin: EdgeInsets.only(
-        bottom: Get.height * 0.118.h,
+        bottom: Get.height * 0.126.h,
         left: 12.w,
         right: 12.w,
         top: 1.h,
       ),
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(color: AppColors.iconGreyColor, offset: Offset(0, 0)),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.grey.withOpacity(0.1),
+              spreadRadius: -2.26,
+              blurRadius: 1.0,
+              offset: const Offset(-4.0, -2.0),
+            ),
+            BoxShadow(
+              color: AppColors.grey.withOpacity(0.1),
+              blurRadius: 1.0,
+              spreadRadius: -2.26,
+              offset: const Offset(5.0, 1.0),
+            ),
           ],
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(8.sp),
+          borderRadius: BorderRadius.circular(10.sp),
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -65,13 +75,17 @@ class ReportView extends GetView<FindChargesScreenController> {
                                   height: 30,
                                   width: 30,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 4.h),
+                                    padding: EdgeInsets.only(top: 3.h),
                                     child: Align(
                                       alignment: Alignment.topLeft,
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new,
-                                        size: 18.sp,
-                                        color: AppColors.iconGreyColor,
+                                      child: SizedBox(
+                                        width: 30.w,
+                                        height: 30.h,
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new,
+                                          size: 18.sp,
+                                          color: AppColors.iconGreyColor,
+                                        ),
                                       ),
                                     ),
                                   ),

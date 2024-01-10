@@ -7,11 +7,11 @@ class SplashScareenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Timer(const Duration(seconds: 5), () {
-      Get.offAll(
-        // HomeView(),
-        const DashboradScareenView(),
-      );
-    });
+    // Timer(const Duration(seconds: 5), () {
+    //   Get.offAll(
+    //     // HomeView(),
+    //     const DashboradScareenView(),
+    //   );
+    // });
   }
 }

@@ -16,13 +16,12 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.sp),
+        borderRadius: BorderRadius.circular(10.sp),
       ),
       borderOnForeground: false,
-      elevation: 14.0,
       color: AppColors.white,
       margin: EdgeInsets.only(
-        bottom: Get.height * 0.118.h,
+        bottom: Get.height * 0.126.h,
         left: 12.w,
         right: 12.w,
         top: 1.h,
@@ -33,7 +32,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
             BoxShadow(color: AppColors.iconGreyColor, offset: Offset(0, 0)),
           ],
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(8.sp),
+          borderRadius: BorderRadius.circular(10.sp),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 4.h),
@@ -59,10 +58,14 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                           },
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 18.sp,
-                              color: AppColors.iconGreyColor,
+                            child: SizedBox(
+                              height: 30.h,
+                              width: 30.w,
+                              child: Icon(
+                                Icons.arrow_back_ios_new,
+                                size: 18.sp,
+                                color: AppColors.iconGreyColor,
+                              ),
                             ),
                           ),
                         ),
@@ -236,36 +239,44 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   width: Get.width,
                   color: AppColors.whiteStarRatingColor,
                   child: Center(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Icon(
-                              Icons.discount,
-                              color: AppColors.seeOfferBtnColor,
-                              size: 24.sp,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              " See Offers",
-                              style: Styles.interRegular(
-                                color: AppColors.seeOfferBtnColor,
-                                size: 20.sp,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    // child: Row(
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 10.w,
+                    //     ),
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Align(
+                    //         alignment: Alignment.centerRight,
+                    //         child: Icon(
+                    //           Icons.discount,
+                    //           color: AppColors.seeOfferBtnColor,
+                    //           size: 24.sp,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       flex: 2,
+                    //       child: Align(
+                    //         alignment: Alignment.centerLeft,
+                    //         child: Text(
+                    //           " See Offers",
+                    //           style: Styles.interRegular(
+                    //             color: AppColors.seeOfferBtnColor,
+                    //             size: 20.sp,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+
+                    child: Text(
+                      " See Offers",
+                      style: Styles.interRegular(
+                        color: AppColors.seeOfferBtnColor,
+                        size: 20.sp,
+                      ),
                     ),
                   ),
                 ),
@@ -279,37 +290,44 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   height: 62.h,
                   width: Get.width,
                   color: AppColors.green,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            EvaIcons.navigation2,
-                            color: AppColors.blackText,
-                            size: 20.sp,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            " Navigate",
-                            style: Styles.interRegular(
-                              color: AppColors.blackText,
-                              size: 20.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  // child: Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SizedBox(
+                  //       width: 10.w,
+                  //     ),
+                  //     Expanded(
+                  //       flex: 1,
+                  //       child: Align(
+                  //         alignment: Alignment.centerRight,
+                  //         child: Icon(
+                  //           EvaIcons.navigation2,
+                  //           color: AppColors.blackText,
+                  //           size: 20.sp,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     Expanded(
+                  //       flex: 2,
+                  //       child: Align(
+                  //         alignment: Alignment.centerLeft,
+                  //         child: Text(
+                  //           " Navigate",
+                  //           style: Styles.interRegular(
+                  //             color: AppColors.blackText,
+                  //             size: 20.sp,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  child: Text(
+                    " Navigate",
+                    style: Styles.interRegular(
+                      color: AppColors.blackText,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ),
