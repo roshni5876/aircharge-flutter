@@ -22,8 +22,8 @@ class ReportView extends GetView<FindChargesScreenController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 12.w,
-        right: 12.w,
+        left: 2.w,
+        right: 2.w,
         top: 1.h,
       ),
       child: Container(
@@ -60,33 +60,26 @@ class ReportView extends GetView<FindChargesScreenController> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: GetBuilder<FindChargesScreenController>(
-                              id: "reportPage",
-                              builder: (cont) => InkWell(
-                                onTap: () {
-                                  controller.isVisibleReport = true;
-                                  controller.isOpenedReport.value = false;
-                                  controller.reportAnimationController
-                                      .reverse();
-                                  controller
-                                      .update(["reportPage", "visiblePage"]);
-                                },
-                                child: SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 3.h),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: SizedBox(
-                                        width: 30.w,
-                                        height: 30.h,
-                                        child: Icon(
-                                          Icons.arrow_back_ios_new,
-                                          size: 18.sp,
-                                          color: AppColors.iconGreyColor,
-                                        ),
-                                      ),
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.isVisibleReport = true;
+                                // controller.isOpenedReport.value = false;
+                                // controller.reportAnimationController
+                                //     .reverse();
+                                controller
+                                    .update(["reportPage", "visiblePage"]);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 3.h),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: SizedBox(
+                                    width: 30.w,
+                                    height: 30.h,
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new,
+                                      size: 18.sp,
+                                      color: AppColors.iconGreyColor,
                                     ),
                                   ),
                                 ),

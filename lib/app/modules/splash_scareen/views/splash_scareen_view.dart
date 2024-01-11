@@ -19,86 +19,28 @@ class SplashScareenView extends GetView<SplashScareenController> {
   Widget build(BuildContext context) {
     Get.put(SplashScareenController());
     return Scaffold(
-      body: FutureBuilder(
-          future: Future.delayed(const Duration(milliseconds: 750)),
-          builder: (context, Snapshot) {
-            if (Snapshot.connectionState == ConnectionState.done) {
-              return const TextColorChangeDemo();
-            }
-            return Container();
-          }),
-    );
-  }
-}
-
-class TextColorChangeDemo extends StatefulWidget {
-  const TextColorChangeDemo({super.key});
-
-  @override
-  _TextColorChangeDemoState createState() => _TextColorChangeDemoState();
-}
-
-class _TextColorChangeDemoState extends State<TextColorChangeDemo>
-    with TickerProviderStateMixin {
-  Color textColor = AppColors.white; // Initial color
-
-  @override
-  void initState() {
-    super.initState();
-    _startColorAnimation();
-  }
-
-  @override
-  dispose() {
-    controller!.dispose();
-    super.dispose();
-  }
-
-  late final AnimationController? controller = AnimationController(
-    duration: const Duration(seconds: 30),
-    vsync: this,
-  )..repeat();
-
-  void _startColorAnimation() {
-    const duration = Duration(seconds: 5);
-    const updateInterval = Duration(milliseconds: 100);
-
-    int steps = duration.inMilliseconds ~/ updateInterval.inMilliseconds;
-    int step = 0;
-
-    Timer.periodic(updateInterval, (timer) {
-      double fraction = step / steps;
-      textColor = Color.lerp(Colors.white, Colors.black, fraction)!;
-
-      if (step++ >= steps) {
-        timer.cancel();
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Icon
             Image.asset(
-              'assets/images/loading.png',
+              'assets/images/loading.png', 
               height: 60.h,
               width: 90.w,
             ),
-            AnimatedBuilder(
-              animation: controller!,
-              builder: (context, child) {
-                return Row(
+
+            Obx(
+              () => Transform.translate(
+                offset: Offset(0.0, controller.textOffset.value),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RichText(
                       text: TextSpan(
                         text: 'air',
                         style: Styles.metaRegular(
-                            color: textColor,
+                            color: AppColors.black,
                             size: 40.sp,
                             font: FontFamily.meta),
                       ),
@@ -107,14 +49,14 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
                       text: TextSpan(
                         text: 'charge',
                         style: Styles.metaBold(
-                            color: textColor,
+                            color: AppColors.black,
                             size: 40.sp,
                             font: FontFamily.meta),
                       ),
                     ),
                   ],
-                );
-              },
+                ),
+              ),
             ),
           ],
         ),
@@ -122,3 +64,94 @@ class _TextColorChangeDemoState extends State<TextColorChangeDemo>
     );
   }
 }
+// class TextColorChangeDemo extends StatefulWidget {
+//   const TextColorChangeDemo({super.key});
+
+//   @override
+//   _TextColorChangeDemoState createState() => _TextColorChangeDemoState();
+// }
+
+// class _TextColorChangeDemoState extends State<TextColorChangeDemo>
+//     with TickerProviderStateMixin {
+//   Color textColor = AppColors.white; // Initial color
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _startColorAnimation();
+//   }
+
+//   @override
+//   dispose() {
+//     controller!.dispose();
+//     super.dispose();
+//   }
+
+//   late final AnimationController? controller = AnimationController(
+//     duration: const Duration(seconds: 30),
+//     vsync: this,
+//   )..repeat();
+
+//   void _startColorAnimation() {
+//     const duration = Duration(seconds: 5);
+//     const updateInterval = Duration(milliseconds: 100);
+
+//     int steps = duration.inMilliseconds ~/ updateInterval.inMilliseconds;
+//     int step = 0;
+
+//     Timer.periodic(updateInterval, (timer) {
+//       double fraction = step / steps;
+//       textColor = Color.lerp(Colors.white, Colors.black, fraction)!;
+
+//       if (step++ >= steps) {
+//         timer.cancel();
+//       }
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Image.asset(
+//               'assets/images/loading.png',
+//               height: 60.h,
+//               width: 90.w,
+//             ),
+//             AnimatedBuilder(
+//               animation: controller!,
+//               builder: (context, child) {
+//                 return Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     RichText(
+//                       text: TextSpan(
+//                         text: 'air',
+//                         style: Styles.metaRegular(
+//                             color: textColor,
+//                             size: 40.sp,
+//                             font: FontFamily.meta),
+//                       ),
+//                     ),
+//                     RichText(
+//                       text: TextSpan(
+//                         text: 'charge',
+//                         style: Styles.metaBold(
+//                             color: textColor,
+//                             size: 40.sp,
+//                             font: FontFamily.meta),
+//                       ),
+//                     ),
+//                   ],
+//                 );
+//               },
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

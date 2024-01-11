@@ -21,8 +21,8 @@ class OfferDetails extends GetView<HomeController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 12.w,
-        right: 12.w,
+        left: 2.w,
+        right: 2.w,
         top: 1.h,
       ),
       child: Container(
@@ -58,28 +58,26 @@ class OfferDetails extends GetView<HomeController> {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: GetBuilder<HomeController>(
-                          id: "visiblePage",
-                          builder: (cont) => GestureDetector(
-                                onTap: () {
-                                  controller.isVisibleOfferScreen = true;
-                                  controller.isOpenedOfferScreen.value = false;
-                                  controller.animationController.reverse();
-                                  controller.update(["visiblePage"]);
-                                },
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: SizedBox(
-                                    height: 30.h,
-                                    width: 30.w,
-                                    child: Icon(
-                                      Icons.arrow_back_ios_new,
-                                      size: 18.sp,
-                                      color: AppColors.iconGreyColor,
-                                    ),
-                                  ),
-                                ),
-                              )),
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.isVisibleOfferScreen = true;
+                          // controller.isOpenedOfferScreen.value = false;
+                          // controller.animationController.reverse();
+                          // controller.update(["visiblePage"]);
+                        },
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox(
+                            height: 30.h,
+                            width: 30.w,
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 18.sp,
+                              color: AppColors.iconGreyColor,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     Expanded(
                       flex: 2,

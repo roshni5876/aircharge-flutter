@@ -344,216 +344,227 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Column(
-              children: [
-                Card(
-                  color: AppColors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.sp),
-                  ),
-                  borderOnForeground: false,
-                  elevation: 1.sp,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8.sp),
-                    ),
-                    padding: EdgeInsets.only(left: 14.w),
-                    child: TextFormField(
-                      expands: false,
-                      autofocus: false,
-                      cursorColor: AppColors.iconGreyColor,
-                      decoration: InputDecoration(
-                        prefixIcon: const ImageIcon(
-                          AssetImage(
-                            "assets/images/search.png",
-                          ),
-                        ),
-                        prefixIconConstraints: BoxConstraints(maxWidth: 30.sp),
-                        prefixIconColor: AppColors.iconGreyColor,
-                        hintText: 'Search Public Charging Locations',
-                        hintStyle: Styles.interRegular(
-                            size: 14.sp, color: AppColors.iconGreyColor),
-                        helperStyle: const TextStyle(color: AppColors.grey),
-                        fillColor: AppColors.white,
-                        filled: true,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.fromLTRB(
-                            20.0.w, 10.0..h, 20.0.w, 10.0.h),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0.sp),
-                          borderSide:
-                              const BorderSide(color: Colors.white, width: 3.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6.sp),
-                        ),
-                        color: AppColors.white,
-                        child: Container(
-                          height: 46.h,
-                          decoration: BoxDecoration(
+            child: Obx(() => Visibility(
+                  visible: controller.isVisibleReport,
+                  replacement: ReportView(),
+                  child: Obx(
+                    () => Visibility(
+                      visible: controller.isVisible,
+                      replacement: FindChargesDetailsScreen(),
+                      child: Column(
+                        children: [
+                          Card(
                             color: AppColors.white,
-                            borderRadius: BorderRadius.circular(6.0.sp),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.w),
-                                child: Icon(
-                                  EvaIcons.navigation2,
-                                  color: AppColors.green,
-                                  size: 24.sp,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.sp),
+                            ),
+                            borderOnForeground: false,
+                            elevation: 1.sp,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(8.sp),
+                              ),
+                              padding: EdgeInsets.only(left: 14.w),
+                              child: TextFormField(
+                                expands: false,
+                                autofocus: false,
+                                cursorColor: AppColors.iconGreyColor,
+                                decoration: InputDecoration(
+                                  prefixIcon: const ImageIcon(
+                                    AssetImage(
+                                      "assets/images/search.png",
+                                    ),
+                                  ),
+                                  prefixIconConstraints:
+                                      BoxConstraints(maxWidth: 30.sp),
+                                  prefixIconColor: AppColors.iconGreyColor,
+                                  hintText: 'Search Public Charging Locations',
+                                  hintStyle: Styles.interRegular(
+                                      size: 14.sp,
+                                      color: AppColors.iconGreyColor),
+                                  helperStyle:
+                                      const TextStyle(color: AppColors.grey),
+                                  fillColor: AppColors.white,
+                                  filled: true,
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0.w, 10.0..h, 20.0.w, 10.0.h),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(10.0.sp),
+                                    borderSide: const BorderSide(
+                                        color: Colors.white, width: 3.0),
+                                  ),
                                 ),
                               ),
-                              SizedBox(
-                                width: Get.width / 2 - 60,
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    'Current Location',
-                                    style: Styles.interRegular(
-                                      color: AppColors.iconGreyColor,
-                                      size: 15.sp,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6.sp),
+                                  ),
+                                  color: AppColors.white,
+                                  child: Container(
+                                    height: 46.h,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      borderRadius:
+                                          BorderRadius.circular(6.0.sp),
                                     ),
-                                    maxLines: 1,
-                                    softWrap: true,
-                                    overflow: TextOverflow.clip,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 6.w),
+                                          child: Icon(
+                                            EvaIcons.navigation2,
+                                            color: AppColors.green,
+                                            size: 24.sp,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: Get.width / 2 - 60,
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              'Current Location',
+                                              style: Styles.interRegular(
+                                                color: AppColors.iconGreyColor,
+                                                size: 15.sp,
+                                              ),
+                                              maxLines: 1,
+                                              softWrap: true,
+                                              overflow: TextOverflow.clip,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.isMapViewVisible =
+                                        !controller.isMapViewVisible;
+                                  },
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6.sp),
+                                    ),
+                                    color: AppColors.white,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8),
+                                      height: 46.h,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0.sp),
+                                      ),
+                                      child: Obx(
+                                        () => Row(
+                                          children: [
+                                            Image.asset(
+                                              !controller.isMapViewVisible
+                                                  ? "assets/images/listview.png"
+                                                  : "assets/images/mapview.png",
+                                              width: 22.w,
+                                              height: 22.h,
+                                            ),
+                                            SizedBox(
+                                              width: 6.w,
+                                            ),
+                                            FittedBox(
+                                              child: Text(
+                                                !controller.isMapViewVisible
+                                                    ? " List View"
+                                                    : ' Map View',
+                                                style: Styles.interRegular(
+                                                  color:
+                                                      AppColors.iconGreyColor,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          controller.isMapViewVisible =
-                              !controller.isMapViewVisible;
-                        },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.sp),
-                          ),
-                          color: AppColors.white,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            height: 46.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(6.0.sp),
-                            ),
+                          Expanded(
                             child: Obx(
-                              () => Row(
-                                children: [
-                                  Image.asset(
-                                    !controller.isMapViewVisible
-                                        ? "assets/images/listview.png"
-                                        : "assets/images/mapview.png",
-                                    width: 22.w,
-                                    height: 22.h,
-                                  ),
-                                  SizedBox(
-                                    width: 6.w,
-                                  ),
-                                  FittedBox(
-                                    child: Text(
-                                      !controller.isMapViewVisible
-                                          ? " List View"
-                                          : ' Map View',
-                                      style: Styles.interRegular(
-                                        color: AppColors.iconGreyColor,
-                                        size: 15.sp,
+                              () => Visibility(
+                                visible: controller.isMapViewVisible,
+                                replacement: SizedBox(
+                                  height: Get.height,
+                                  width: Get.width,
+                                  child: Obx(
+                                    () => Visibility(
+                                      visible: controller.isVisible,
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                            child: Container(),
+                                          ),
+                                          Expanded(
+                                            child: listViewWidget(false),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                ],
+                                ),
+                                child: listViewWidget(true),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Obx(
-                    () => Visibility(
-                      visible: controller.isMapViewVisible,
-                      replacement: SizedBox(
-                        height: Get.height,
-                        width: Get.width,
-                        child: Obx(
-                          () => Visibility(
-                            visible: controller.isVisible,
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Container(),
-                                ),
-                                Expanded(
-                                  child: listViewWidget(false),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      child: Obx(
-                        () => Visibility(
-                            visible: controller.isVisible,
-                            child: listViewWidget(true)),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                )),
           ),
-          Obx(
-            () => Visibility(
-              visible: controller.isVisibleReport,
-              replacement: SizedBox(
-                height: Get.height,
-                width: Get.width,
-              ),
-              child: GetBuilder<FindChargesScreenController>(
-                id: "visiblePage",
-                builder: (cont) => AnimatedPositioned(
-                  curve: Curves.easeInOut,
-                  top: 0,
-                  bottom: 0,
-                  right: 2,
-                  left: controller.isOpened.value ? 2 : Get.width,
-                  duration: const Duration(milliseconds: 300),
-                  child: const FindChargesDetailsScreen(),
-                ),
-              ),
-            ),
-          ),
-          GetBuilder<FindChargesScreenController>(
-            id: "reportPage",
-            builder: (cont) {
-              return AnimatedPositioned(
-                curve: Curves.easeInOut,
-                top: 0,
-                bottom: 0,
-                right: 2,
-                left: controller.isOpenedReport.value ? 2 : Get.width,
-                duration: const Duration(milliseconds: 300),
-                child: const ReportView(),
-              );
-            },
-          ),
+          // Obx(
+          //   () => Visibility(
+          //     visible: controller.isVisibleReport,
+          //     replacement: FindChargesDetailsScreen(),
+          //     child: FindChargesDetailsScreen(),
+          // child: GetBuilder<FindChargesScreenController>(
+          //   id: "visiblePage",
+          //   builder: (cont) => AnimatedPositioned(
+          //     curve: Curves.easeInOut,
+          //     top: 0,
+          //     bottom: 0,
+          //     right: 2,
+          //     left: controller.isOpened.value ? 2 : Get.width,
+          //     duration: const Duration(milliseconds: 300),
+          //     child: const FindChargesDetailsScreen(),
+          //   ),
+          // ),
+          //   ),
+          // ),
+          // GetBuilder<FindChargesScreenController>(
+          //   id: "reportPage",
+          //   builder: (cont) {
+          //     return AnimatedPositioned(
+          //       curve: Curves.easeInOut,
+          //       top: 0,
+          //       bottom: 0,
+          //       right: 2,
+          //       left: controller.isOpenedReport.value ? 2 : Get.width,
+          //       duration: const Duration(milliseconds: 300),
+          //       child: const ReportView(),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
@@ -588,12 +599,12 @@ class FindChargesScreenView extends GetView<FindChargesScreenController> {
               onTap: () {
                 controller.isVisible = false;
                 controller.isOpened.value = !controller.isOpened.value;
-                if (controller.isOpened.value) {
-                  controller.animationController.forward();
-                } else {
-                  controller.animationController.reverse();
-                }
-                controller.update(["visiblePage", "reportPage"]);
+                // if (controller.isOpened.value) {
+                //   controller.animationController.forward();
+                // } else {
+                //   controller.animationController.reverse();
+                // }
+                // controller.update(["visiblePage", "reportPage"]);
               },
               child: CommanListTile(
                 // img: "",

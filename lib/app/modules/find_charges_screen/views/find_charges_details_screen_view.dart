@@ -22,8 +22,8 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 12.w,
-        right: 12.w,
+        left: 2.w,
+        right: 2.w,
         top: 1.h,
       ),
       child: Container(
@@ -47,25 +47,22 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: GetBuilder<FindChargesScreenController>(
-                        id: "visiblePage",
-                        builder: (cont) => GestureDetector(
-                          onTap: () {
-                            controller.isVisible = true;
-                            controller.isOpened.value = false;
-                            controller.animationController.reverse();
-                            controller.update(["visiblePage"]);
-                          },
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: SizedBox(
-                              height: 30.h,
-                              width: 30.w,
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                size: 18.sp,
-                                color: AppColors.iconGreyColor,
-                              ),
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.isVisible = true;
+                          // controller.isOpened.value = false;
+                          // controller.animationController.reverse();
+                          // controller.update(["visiblePage"]);
+                        },
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox(
+                            height: 30.h,
+                            width: 30.w,
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 18.sp,
+                              color: AppColors.iconGreyColor,
                             ),
                           ),
                         ),
@@ -100,8 +97,8 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                           onTap: () {
                             controller.isVisibleReport = false;
                             controller.isOpenedReport.value = true;
-                            controller.reportAnimationController.forward();
-                            controller.update(["reportPage"]);
+                            // controller.reportAnimationController.forward();
+                            // controller.update(["visiblePag", "reportPage"]);
                           },
                           child: Column(
                             children: [

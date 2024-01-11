@@ -20,16 +20,16 @@ class FindChargesScreenController extends GetxController
 
     scrollController.addListener(_scrollListener);
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
+    // animationController = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 2),
+    // );
 
     update(["visiblePage"]);
-    reportAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
+    // reportAnimationController = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 2),
+    // );
     update(["reportPage"]);
     update(["reportPageCommentTextArea"]);
     update(["mapViewVisiblePage"]);
@@ -37,8 +37,8 @@ class FindChargesScreenController extends GetxController
 
   @override
   void dispose() {
-    animationController.dispose();
-    reportAnimationController.dispose();
+    // animationController.dispose();
+    // reportAnimationController.dispose();
     textarea.dispose();
     super.dispose();
   }
@@ -61,8 +61,9 @@ class FindChargesScreenController extends GetxController
   final ScrollController scrollController = ScrollController();
   RxInt visibleItemCount = 3.obs;
 
-    void _scrollListener() {
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+  void _scrollListener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
       // User reached the end of the list, load more items
       visibleItemCount += 10; // Adjust the number of items to load as needed
     }
