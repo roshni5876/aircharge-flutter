@@ -22,15 +22,15 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: Card(
-          elevation: 2.sp,
+          elevation: 1.8.sp,
           child: SizedBox(
             height: height,
             width: width,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                elevation: 3.sp,
+                elevation: 2.sp,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
+                    borderRadius: BorderRadius.circular(8.sp)),
                 backgroundColor: color,
               ),
               onPressed: onPressed,

@@ -1,9 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:aircharge/app/core/constants/enums.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../controllers/dashborad_scareen_controller.dart';
 
@@ -39,17 +41,17 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                   children: [
                     _buildNavItem(
                       index: 0,
-                      iconOrImage: "assets/images/offer.png",
+                      img: "assets/images/bnb_offers_icon.svg",
                       lable: 'Offers',
                     ),
                     _buildNavItem(
                       index: 1,
-                      iconOrImage: EvaIcons.flash,
+                      img: "assets/images/bnb_findcharger_icon.svg",
                       lable: 'Find Chargers',
                     ),
                     _buildNavItem(
                       index: 2,
-                      iconOrImage: Icons.settings,
+                      img: "assets/images/bnb_settings_icon.svg",
                       lable: 'Settings',
                     ),
                   ]),
@@ -110,8 +112,7 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
     );
   }
 
-  Widget _buildNavItem({int? index, dynamic iconOrImage, String? lable}) {
-    bool isImage = iconOrImage is String;
+  Widget _buildNavItem({int? index, String? img, String? lable}) {
     return GetBuilder<DashboradScareenController>(
       id: "screen",
       builder: (cont) => InkWell(
@@ -133,22 +134,14 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
               ),
               child: Column(
                 children: [
-                  isImage
-                      ? Image.asset(
-                          iconOrImage,
-                          width: 28.0.w,
-                          height: 28.0.h,
-                          color: controller.selectedTab == index
-                              ? AppColors.bottombarSelectedItemGrey
-                              : AppColors.bottombarUnSelectedItemGrey,
-                        )
-                      : Icon(
-                          iconOrImage,
-                          size: 28.0.sp,
-                          color: controller.selectedTab == index
-                              ? AppColors.bottombarSelectedItemGrey
-                              : AppColors.bottombarUnSelectedItemGrey,
-                        ),
+                  SvgPicture.asset(
+                    img!,
+                    width: 32.0.w,
+                    height: 32.0.h,
+                    color: controller.selectedTab == index
+                        ? AppColors.bottombarSelectedItemGrey
+                        : AppColors.bottombarUnSelectedItemGrey,
+                  ),
                   SizedBox(
                     height: 6.h,
                   ),
@@ -157,8 +150,8 @@ class DashboradScareenView extends GetView<DashboradScareenController> {
                     style: Styles.interRegular(
                       size: 14.sp,
                       color: controller.selectedTab == index
-                          ? AppColors.black
-                          : Colors.grey,
+                          ? AppColors.bottombarSelectedItemGrey
+                          : AppColors.bottombarUnSelectedItemGrey,
                     ),
                   ),
                 ],

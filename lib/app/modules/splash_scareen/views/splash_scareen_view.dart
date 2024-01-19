@@ -7,6 +7,7 @@ import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
@@ -23,38 +24,42 @@ class SplashScareenView extends GetView<SplashScareenController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon
-            Image.asset(
-              'assets/images/loading.png', 
+            SvgPicture.asset(
+              'assets/images/splash_aircharge_iconlogo.svg',
               height: 60.h,
-              width: 90.w,
+              width: 60.h,
             ),
-
             Obx(
               () => Transform.translate(
                 offset: Offset(0.0, controller.textOffset.value),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: 'air',
-                        style: Styles.metaRegular(
-                            color: AppColors.black,
-                            size: 40.sp,
-                            font: FontFamily.meta),
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: 'charge',
-                        style: Styles.metaBold(
-                            color: AppColors.black,
-                            size: 40.sp,
-                            font: FontFamily.meta),
-                      ),
-                    ),
-                  ],
+                // child: Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     RichText(
+                //       text: TextSpan(
+                //         text: 'air',
+                //         style: Styles.metaRegular(
+                //             color: AppColors.black,
+                //             size: 40.sp,
+                //             font: FontFamily.meta),
+                //       ),
+                //     ),
+                //     RichText(
+                //       text: TextSpan(
+                //         text: 'charge',
+                //         style: Styles.metaBold(
+                //             color: AppColors.black,
+                //             size: 40.sp,
+                //             font: FontFamily.meta),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+
+                child: SvgPicture.asset(
+                  'assets/images/splash_aircharge_textlogo.svg',
+                  height: 40.h,
+                  width: 40.h,
                 ),
               ),
             ),

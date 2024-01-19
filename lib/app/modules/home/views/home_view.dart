@@ -70,127 +70,144 @@ class ContentWidget extends GetView<HomeController> {
             color: AppColors.bgGreyColor,
           ),
         ),
-
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 12.w,
           ),
-          child: Obx(
-            () => Visibility(
-              visible: controller.isVisibleOfferScreen &&
-                  controller.isVisibleMultipleOffers,
-              replacement: Container(
-                  child: controller.isVisibleOfferScreen
-                      ? MultipleOffers()
-                      : OfferDetails()),
-              child: Column(
-                children: [
-                  Card(
+          // child: Obx(
+          //   () => Visibility(
+          //     visible: controller.isVisibleOfferScreen &&
+          //         controller.isVisibleMultipleOffers,
+          //     replacement: Container(
+          //         child: controller.isVisibleOfferScreen
+          //             ? const MultipleOffers()
+          //             : const OfferDetails()),
+          child: Column(
+            children: [
+              Card(
+                color: AppColors.offerBgWhiteColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.sp),
+                ),
+                borderOnForeground: false,
+                elevation: 3.sp,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 4.0.w,
+                ),
+                child: Container(
+                  height: 50.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
                     color: AppColors.offerBgWhiteColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6.sp),
+                    borderRadius: BorderRadius.circular(6.sp),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Offers',
+                      style: Styles.interBold(
+                          size: 16.sp, color: AppColors.blackText),
                     ),
-                    borderOnForeground: false,
-                    elevation: 3.sp,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 4.0.w,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 7.h,
+              ),
+              Card(
+                color: AppColors.offerBgWhiteColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.sp),
+                ),
+                borderOnForeground: false,
+                elevation: 3.sp,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 4.0.w,
+                ),
+                child: Container(
+                  height: 50.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      color: AppColors.offerBgWhiteColor,
+                      borderRadius: BorderRadius.circular(6.sp)),
+                  child: Center(
+                    child: Text(
+                      'All locations shown in the list below have wireless chargers installed on the premises.',
+                      textAlign: TextAlign.center,
+                      style: Styles.interRegular(
+                          size: 11.sp, color: AppColors.grey),
                     ),
-                    child: Container(
-                      height: 50.h,
+                  ),
+                ),
+              ),
+              // SizedBox(
+              //   height: 6.sp,
+              // ),
+              // Text(
+              //   'Browse Nearby Offers',
+              //   style: Styles.interBold(
+              //     color: AppColors.blackText,
+              //     size: 14.sp,
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 2.sp),
+              //   child: Text(
+              //     "All locations shown in the list below, have wireless chargers installed on the premises.",
+              //     textAlign: TextAlign.center,
+              //     style: Styles.interRegular(
+              //       color: AppColors.grey,
+              //       size: 10.sp,
+              //     ),
+              //     maxLines: 2,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10.h,
+              // ),
+              Expanded(
+                child: Obx(
+                  () => Visibility(
+                    visible: controller.isVisibleOfferScreen &&
+                        controller.isVisibleMultipleOffers,
+                    replacement: SizedBox(
+                      height: Get.height,
                       width: Get.width,
-                      decoration: BoxDecoration(
-                        color: AppColors.offerBgWhiteColor,
-                        borderRadius: BorderRadius.circular(6.sp),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Offers',
-                          style: Styles.interBold(
-                              size: 16.sp, color: AppColors.blackText),
-                        ),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 7.h,
-                  ),
-                  Card(
-                    color: AppColors.offerBgWhiteColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6.sp),
-                    ),
-                    borderOnForeground: false,
-                    elevation: 3.sp,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 4.0.w,
-                    ),
-                    child: Container(
-                      height: 50.h,
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          color: AppColors.offerBgWhiteColor,
-                          borderRadius: BorderRadius.circular(6.sp)),
-                      child: Center(
-                        child: Text(
-                          'All locations shown in the list below have wireless chargers installed on the premises.',
-                          textAlign: TextAlign.center,
-                          style: Styles.interRegular(
-                              size: 11.sp, color: AppColors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // SizedBox(
-                  //   height: 6.sp,
-                  // ),
-                  // Text(
-                  //   'Browse Nearby Offers',
-                  //   style: Styles.interBold(
-                  //     color: AppColors.blackText,
-                  //     size: 14.sp,
-                  //   ),
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 2.sp),
-                  //   child: Text(
-                  //     "All locations shown in the list below, have wireless chargers installed on the premises.",
-                  //     textAlign: TextAlign.center,
-                  //     style: Styles.interRegular(
-                  //       color: AppColors.grey,
-                  //       size: 10.sp,
-                  //     ),
-                  //     maxLines: 2,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 10.h,
-                  // ),
-                  Expanded(
                     child: ListView(
                       physics: const SlowScrollPhysics(),
-                      padding: EdgeInsets.only(top: 8.h, bottom: 84.h),
+                      padding: EdgeInsets.only(top: 18.h, bottom: 86.h),
                       children: [
                         CarouselSlider.builder(
                           itemCount: controller.itemsDemo.length,
                           options: CarouselOptions(
-                            aspectRatio: 2.4,
+                            aspectRatio: 2.8,
                             onPageChanged: controller.onPageChanged,
                             viewportFraction: 1.0,
                             autoPlay: true,
                           ),
                           itemBuilder: (context, index, realIdx) {
                             return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 4.w,
+                              ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12.sp),
-                                child: Image.asset(
-                                  controller.itemsDemo[index],
-                                  fit: BoxFit.cover,
-                                  width: Get.width,
+                                borderRadius: BorderRadius.circular(8.sp),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.sp),
+                                  ),
+                                  child: Image.asset(
+                                    controller.itemsDemo[index],
+                                    fit: BoxFit.cover,
+                                    width: Get.width,
+                                  ),
                                 ),
                               ),
                             );
                           },
+                        ),
+                        SizedBox(
+                          height: 4.h,
                         ),
                         Obx(
                           () => controller
@@ -214,104 +231,106 @@ class ContentWidget extends GetView<HomeController> {
                             shrinkWrap: true,
                             itemCount: offers.length,
                             itemBuilder: (context, index) {
-                              return Card(
-                                child: GetBuilder<HomeController>(
-                                  id: "visiblePage",
-                                  builder: (cont) => InkWell(
-                                    onTap: () {
-                                      if (index.isEven) {
-                                        controller.isVisibleOfferScreen = false;
-                                      } else {
-                                        controller.isVisibleMultipleOffers =
-                                            false;
-                                      }
-                                      // if (controller.isVisibleOfferScreen) {
-                                      //   OfferDetails();
-                                      // }
+                              return GetBuilder<HomeController>(
+                                id: "visiblePage",
+                                builder: (cont) => InkWell(
+                                  onTap: () {
+                                    if (index.isEven) {
+                                      controller.isVisibleOfferScreen = false;
+
                                       controller.isOpenedOfferScreen.value =
                                           !controller.isOpenedOfferScreen.value;
-                                      // if (controller
-                                      //     .isOpenedOfferScreen.value) {
-                                      //   controller.animationController
-                                      //       .forward();
-                                      // } else {
-                                      //   controller.animationController
-                                      //       .reverse();
-                                      // }
-                                      // controller.update(["visiblePage"]);
+                                      if (controller
+                                          .isOpenedOfferScreen.value) {
+                                        controller.animationController
+                                            .forward();
+                                      } else {
+                                        controller.animationController
+                                            .reverse();
+                                      }
+                                      controller.update(["visiblePage"]);
+                                    } else {
+                                      controller.isVisibleMultipleOffers =
+                                          false;
 
-                                      // controller.update(["visiblePage"]);
-                                      // } else {
-                                      //   controller.isVisibleMultipleOffers =
-                                      //       false;
-
-                                      //   controller
-                                      //           .isOpenedMultipleOffers.value =
-                                      //       !controller
-                                      //           .isOpenedMultipleOffers.value;
-                                      //   if (controller
-                                      //       .isOpenedMultipleOffers.value) {
-                                      //     controller
-                                      //         .animationControllerMultipleOffers
-                                      //         .forward();
-                                      //   } else {
-                                      //     controller
-                                      //         .animationControllerMultipleOffers
-                                      //         .reverse();
-                                      //   }
-                                      //   controller.update(["visiblePage"]);
-                                      // }
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            8.0.sp,
-                                          ),
-                                          color: AppColors.white),
-                                      width: Get.width,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(8.0.sp),
-                                                    topRight: Radius.circular(
-                                                        8.0.sp)),
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                        "${offers[index]['image']}"),
-                                                    fit: BoxFit.fill)),
-                                            height: 160.h,
-                                            width: Get.width,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 10.w,
-                                                bottom: 14.h,
-                                                top: 2.h),
-                                            child: Text(
-                                              "${offers[index]['title']}",
-                                              style: Styles.interBold(
-                                                color: AppColors.black,
-                                                size: 12.sp,
+                                      controller.isOpenedMultipleOffers.value =
+                                          !controller
+                                              .isOpenedMultipleOffers.value;
+                                      if (controller
+                                          .isOpenedMultipleOffers.value) {
+                                        controller
+                                            .animationControllerMultipleOffers
+                                            .forward();
+                                      } else {
+                                        controller
+                                            .animationControllerMultipleOffers
+                                            .reverse();
+                                      }
+                                      controller.update(["visiblePage"]);
+                                    }
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.sp),
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.sp),
+                                      ),
+                                      elevation: 3,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              8.0.sp,
+                                            ),
+                                            color: AppColors.white),
+                                        width: Get.width,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  8.0.sp),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  8.0.sp)),
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          "${offers[index]['image']}"),
+                                                      fit: BoxFit.fill)),
+                                              height: 210.h,
+                                              width: Get.width,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10.w,
+                                                  bottom: 14.h,
+                                                  top: 2.h),
+                                              child: Text(
+                                                "${offers[index]['title']}",
+                                                style: Styles.interBold(
+                                                  color: AppColors.black,
+                                                  size: 12.sp,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 10.w, bottom: 14.h),
-                                            child: Text(
-                                              "${offers[index]['subtitle']}",
-                                              style: Styles.interRegular(
-                                                color: AppColors.black,
-                                                size: 12.sp,
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10.w, bottom: 14.h),
+                                              child: Text(
+                                                "${offers[index]['subtitle']}",
+                                                style: Styles.interRegular(
+                                                  color: AppColors.black,
+                                                  size: 12.sp,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -321,38 +340,44 @@ class ContentWidget extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
-
-        // OfferDetails(),
-        // Obx(() => Visibility(
-        //     visible: controller.isVisibleOfferScreen, child: OfferDetails())),
-
-        // GetBuilder<HomeController>(
-        //   id: "visiblePage",
-        //   builder: (cont) => AnimatedPositioned(
-        //       curve: Curves.easeInOut,
-        //       top: 0,
-        //       bottom: 0,
-        //       right: 2,
-        //       left: controller.isOpenedMultipleOffers.value ? 2 : Get.width,
-        //       duration: const Duration(milliseconds: 300),
-        //       child: const MultipleOffers()),
-        // ),
-        // GetBuilder<HomeController>(
-        //   id: "visiblePage",
-        //   builder: (cont) => AnimatedPositioned(
-        //       curve: Curves.easeInOut,
-        //       top: 0,
-        //       bottom: 0,
-        //       right: 2,
-        //       left: controller.isOpenedOfferScreen.value ? 2 : Get.width,
-        //       duration: const Duration(milliseconds: 300),
-        //       child: const OfferDetails()),
-        // ),
+        GetBuilder<HomeController>(
+          id: "visiblePage",
+          builder: (cont) => AnimatedPositioned(
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpenedOfferScreen.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const OfferDetails()),
+        ),
+        GetBuilder<HomeController>(
+          id: "visiblePage",
+          builder: (cont) => AnimatedPositioned(
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpenedMultipleOffers.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const MultipleOffers()),
+        ),
+        GetBuilder<HomeController>(
+          id: "visiblePage",
+          builder: (cont) => AnimatedPositioned(
+              curve: Curves.easeInOut,
+              top: 0,
+              bottom: 0,
+              right: 2,
+              left: controller.isOpenedOfferScreen.value ? 2 : Get.width,
+              duration: const Duration(milliseconds: 300),
+              child: const OfferDetails()),
+        ),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:aircharge/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class MultipleOffers extends GetView<HomeController> {
@@ -19,23 +20,23 @@ class MultipleOffers extends GetView<HomeController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 2.w,
-        right: 2.w,
+        left: 12.w,
+        right: 12.w,
         top: 1.h,
       ),
       child: GestureDetector(
         onTap: () {
           controller.isVisibleOfferScreen = false;
-          // controller.isOpenedOfferScreen.value =
-          //     !controller.isOpenedOfferScreen.value;
-          // if (controller.isOpenedOfferScreen.value) {
-          //   controller.animationController.forward();
-          // } else {
-          //   controller.animationController.reverse();
-          // }
-          // controller.update([
-          //   "visiblePage",
-          // ]);
+          controller.isOpenedOfferScreen.value =
+              !controller.isOpenedOfferScreen.value;
+          if (controller.isOpenedOfferScreen.value) {
+            controller.animationController.forward();
+          } else {
+            controller.animationController.reverse();
+          }
+          controller.update([
+            "visiblePage",
+          ]);
         },
         child: Container(
           height: Get.height,
@@ -71,16 +72,14 @@ class MultipleOffers extends GetView<HomeController> {
                         child: GestureDetector(
                           onTap: () {
                             controller.isVisibleMultipleOffers = true;
-                            // controller.isOpenedMultipleOffers.value =
-                            //     false;
-                            // controller.animationControllerMultipleOffers
-                            //     .reverse();
-                            // controller.update(["visiblePage"]);
+                            controller.isOpenedMultipleOffers.value =
+                                false;
+                            controller.animationControllerMultipleOffers
+                                .reverse();
+                            controller.update(["visiblePage"]);
                           },
-                          child: Container(
-                            color: AppColors.blackText,
-                            height: 40.h,
-                            width: 40.w,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
                             child: Icon(
                               Icons.arrow_back_ios_new,
                               size: 18.sp,
@@ -91,12 +90,15 @@ class MultipleOffers extends GetView<HomeController> {
                       ),
                       Expanded(
                         flex: 2,
-                        child: CircleAvatar(
-                          child: Image.asset(
-                            "assets/images/coffelogo.png",
-                            width: 40.w,
-                            height: 40.h,
-                            fit: BoxFit.fill,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 4.h),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 20.sp,
+                            child: SvgPicture.asset(
+                              'assets/images/od_logo_costa.svg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                       ),
@@ -169,21 +171,25 @@ class MultipleOffers extends GetView<HomeController> {
                                   Expanded(
                                     flex: 3,
                                     child: Text(
-                                      "Exclusive Festive Menu in Costa Club App ",
+                                      "Exclusive Festive Menu in \nCosta Club App",
                                       style: Styles.interBold(
                                         color: AppColors.blackText,
-                                        size: 13.sp,
+                                        size: 12.sp,
                                       ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   Expanded(
                                     flex: 3,
                                     child: Text(
-                                      "McDonald's Monopoly is back! Peel. Play. Win?",
+                                      "McDonald's Monopoly is back! \nPeel. Play. Win?",
                                       style: Styles.interRegular(
                                         color: AppColors.black,
-                                        size: 12.sp,
+                                        size: 11.sp,
                                       ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   Expanded(
@@ -192,7 +198,7 @@ class MultipleOffers extends GetView<HomeController> {
                                       "offer ends: dd/mm/yyyy",
                                       style: Styles.interRegular(
                                         color: AppColors.black,
-                                        size: 10.sp,
+                                        size: 9.sp,
                                       ),
                                     ),
                                   ),
@@ -246,18 +252,20 @@ class MultipleOffers extends GetView<HomeController> {
                                       "Free cake on your birthday",
                                       style: Styles.interBold(
                                         color: AppColors.blackText,
-                                        size: 13.sp,
+                                        size: 12.sp,
                                       ),
                                     ),
                                   ),
                                   Expanded(
                                     flex: 3,
                                     child: Text(
-                                      "Celebrate your birthday with cake for free.",
+                                      "Celebrate your birthday with\n cake for free.",
                                       style: Styles.interRegular(
                                         color: AppColors.black,
-                                        size: 12.sp,
+                                        size: 11.sp,
                                       ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   const Expanded(flex: 1, child: SizedBox()),
@@ -311,7 +319,7 @@ class MultipleOffers extends GetView<HomeController> {
                                       "Get your free drnk faster",
                                       style: Styles.interBold(
                                         color: AppColors.blackText,
-                                        size: 13.sp,
+                                        size: 12.sp,
                                       ),
                                     ),
                                   ),
@@ -321,7 +329,7 @@ class MultipleOffers extends GetView<HomeController> {
                                       "Buy 5 drinks to get 1 free.",
                                       style: Styles.interRegular(
                                         color: AppColors.black,
-                                        size: 12.sp,
+                                        size: 11.sp,
                                       ),
                                     ),
                                   ),

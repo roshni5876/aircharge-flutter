@@ -11,6 +11,7 @@ class DashboradScareenController extends GetxController
   @override
   void onInit() {
     selectedTab = 1;
+    update(["screen"]);
     super.onInit();
   }
 
@@ -22,7 +23,7 @@ class DashboradScareenController extends GetxController
 
   int currentIndex = 1;
 
-  Widget currentScreen = FindChargesScreenView();
+  Widget currentScreen = const FindChargesScreenView();
 
   navigateToScreen(
     int index,
@@ -85,8 +86,6 @@ class DashboradScareenController extends GetxController
         return const HomeView();
     }
   }
-
-  buildScreen(int index) {}
 
   void selectPage(int index) {
     selectedTab = index;

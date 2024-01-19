@@ -16,12 +16,12 @@ class SplashScareenController extends GetxController
   void onInit() {
     super.onInit();
     textController = AnimationController(
-      duration: const Duration(milliseconds: 570),
+      duration: const Duration(milliseconds: 470),
       vsync: this,
     );
 
     _startTextAnimation();
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 2), () {
       Get.offAll(
         const DashboradScareenView(),
       );
@@ -33,7 +33,7 @@ class SplashScareenController extends GetxController
 
     textController.addListener(() {
       textOffset.value = Tween<double>(
-        begin: 80.0,
+        begin: 300.0,
         end: 10.0,
       ).animate(textController).value;
     });

@@ -4,6 +4,7 @@ import 'package:aircharge/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/theme/colors.dart';
@@ -21,8 +22,8 @@ class OfferDetails extends GetView<HomeController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 2.w,
-        right: 2.w,
+        left: 12.w,
+        right: 12.w,
         top: 1.h,
       ),
       child: Container(
@@ -61,15 +62,14 @@ class OfferDetails extends GetView<HomeController> {
                       child: GestureDetector(
                         onTap: () {
                           controller.isVisibleOfferScreen = true;
-                          // controller.isOpenedOfferScreen.value = false;
-                          // controller.animationController.reverse();
-                          // controller.update(["visiblePage"]);
+                          controller.isOpenedOfferScreen.value = false;
+                          controller.animationController.reverse();
+                          controller.update(["visiblePage"]);
                         },
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: SizedBox(
-                            height: 30.h,
-                            width: 30.w,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
                             child: Icon(
                               Icons.arrow_back_ios_new,
                               size: 18.sp,
@@ -81,12 +81,22 @@ class OfferDetails extends GetView<HomeController> {
                     ),
                     Expanded(
                       flex: 2,
-                      child: CircleAvatar(
-                        child: Image.asset(
-                          "assets/images/starbuckslogo.png",
-                          width: 40.w,
-                          height: 40.h,
-                          fit: BoxFit.fill,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 4.h),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          radius: 20.sp,
+                          child: SvgPicture.asset(
+                            'assets/images/od_logo_starbucks.svg',
+                            fit: BoxFit.contain,
+                          ),
+
+                          // child: Image.asset(
+                          //   "assets/images/starbuckslogo.png",
+                          //   width: 40.w,
+                          //   height: 40.h,
+                          //   fit: BoxFit.fill,
+                          // ),
                         ),
                       ),
                     ),

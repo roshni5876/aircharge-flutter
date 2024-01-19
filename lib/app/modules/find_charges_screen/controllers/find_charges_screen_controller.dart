@@ -1,5 +1,4 @@
 import 'package:aircharge/app/data/models/error_model.dart';
-import 'package:aircharge/app/data/models/list_map.dart';
 import 'package:aircharge/app/data/repostorys/api_repostory.dart';
 import 'package:aircharge/app/data/response_dto/find_charges_response.dart';
 import 'package:flutter/material.dart';
@@ -11,25 +10,27 @@ class FindChargesScreenController extends GetxController
     with GetTickerProviderStateMixin {
   late ApiRepostory _apiRepostory;
 
+  FocusNode cardFocus = FocusNode();
+
+  final RxBool isTextFieldSelected = false.obs;
+
   @override
   void onInit() {
     super.onInit();
     // getFindChargesListLoctionsList();
     update(["details"]);
-    charges;
+    // charges;
 
-    scrollController.addListener(_scrollListener);
-
-    // animationController = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 2),
-    // );
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
 
     update(["visiblePage"]);
-    // reportAnimationController = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 2),
-    // );
+    reportAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
     update(["reportPage"]);
     update(["reportPageCommentTextArea"]);
     update(["mapViewVisiblePage"]);
@@ -37,10 +38,20 @@ class FindChargesScreenController extends GetxController
 
   @override
   void dispose() {
-    // animationController.dispose();
-    // reportAnimationController.dispose();
+    animationController.dispose();
+    reportAnimationController.dispose();
     textarea.dispose();
     super.dispose();
+  }
+
+  void onTextFieldFocused() {
+    isTextFieldSelected.value = true;
+    update();
+  }
+
+  void onTextFieldUnfocused() {
+    isTextFieldSelected.value = false;
+    update();
   }
 
   ///Call DashbordScreen
@@ -59,15 +70,6 @@ class FindChargesScreenController extends GetxController
 
   ///For Listviw Items
   final ScrollController scrollController = ScrollController();
-  RxInt visibleItemCount = 3.obs;
-
-  void _scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      // User reached the end of the list, load more items
-      visibleItemCount += 10; // Adjust the number of items to load as needed
-    }
-  }
 
   /// For Details Screens
   RxBool isOpened = false.obs;

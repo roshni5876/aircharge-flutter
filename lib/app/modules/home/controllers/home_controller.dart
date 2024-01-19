@@ -11,23 +11,23 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     super.onInit();
     update(["dot"]);
     offers;
-    // animationController = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 2),
-    // );
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
 
-    // animationControllerMultipleOffers = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(seconds: 2),
-    // );
+    animationControllerMultipleOffers = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
 
     update(["visiblePage"]);
   }
 
   @override
   void dispose() {
-    // animationController.dispose();
-    // animationControllerMultipleOffers.dispose();
+    animationController.dispose();
+    animationControllerMultipleOffers.dispose();
     super.dispose();
   }
 

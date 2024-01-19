@@ -4,7 +4,6 @@ import 'package:aircharge/app/core/theme/buttons.dart';
 import 'package:aircharge/app/core/theme/colors.dart';
 import 'package:aircharge/app/core/theme/styles.dart';
 import 'package:aircharge/app/modules/find_charges_screen/controllers/find_charges_screen_controller.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +21,8 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
       color: AppColors.white,
       margin: EdgeInsets.only(
         bottom: Get.height * 0.126.h,
-        left: 2.w,
-        right: 2.w,
+        left: 12.w,
+        right: 12.w,
         top: 1.h,
       ),
       child: Container(
@@ -50,15 +49,14 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                       child: GestureDetector(
                         onTap: () {
                           controller.isVisible = true;
-                          // controller.isOpened.value = false;
-                          // controller.animationController.reverse();
-                          // controller.update(["visiblePage"]);
+                          controller.isOpened.value = false;
+                          controller.animationController.reverse();
+                          controller.update(["visiblePage"]);
                         },
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: SizedBox(
-                            height: 30.h,
-                            width: 30.w,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
                             child: Icon(
                               Icons.arrow_back_ios_new,
                               size: 18.sp,
@@ -71,13 +69,20 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                     Expanded(
                       flex: 2,
                       child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 18.sp,
                         child: Image.asset(
                           "assets/images/starbuckslogo.png",
-                          width: 40.w,
-                          height: 40.h,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.contain,
                         ),
                       ),
+                      // child: CircleAvatar(
+                      //   radius: 22.sp,
+                      //   child: SvgPicture.asset(
+                      //     'assets/images/od_logo_starbucks.svg',
+                      //     fit: BoxFit.fill,
+                      //   ),
+                      // ),
                     ),
                     Expanded(
                       flex: 9,
@@ -97,8 +102,8 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                           onTap: () {
                             controller.isVisibleReport = false;
                             controller.isOpenedReport.value = true;
-                            // controller.reportAnimationController.forward();
-                            // controller.update(["visiblePag", "reportPage"]);
+                            controller.reportAnimationController.forward();
+                            controller.update(["visiblePag", "reportPage"]);
                           },
                           child: Column(
                             children: [
@@ -131,10 +136,11 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0.sp),
-                      image: const DecorationImage(
-                          image: AssetImage("assets/images/findcharges.png"),
-                          fit: BoxFit.fill)),
+                    borderRadius: BorderRadius.circular(8.0.sp),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/images/findcharges.png"),
+                        fit: BoxFit.fill),
+                  ),
                   height: Get.height / 4.2.h,
                   width: Get.width,
                 ),
@@ -225,7 +231,7 @@ class FindChargesDetailsScreen extends GetView<FindChargesScreenController> {
               // SizedBox(
               //   height: Get.height / 20.h,
               // ),
-              Spacer(),
+             const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 6.w,
